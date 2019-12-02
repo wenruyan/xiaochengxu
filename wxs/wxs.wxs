@@ -1,0 +1,95 @@
+var getRandom = function(str) { 
+  return str += '?t=' + Math.random();
+}
+/**
+ * 
+ * @param num 传入的数字
+ * @param length 保留的小数位数
+ * @param bol 是否隐藏小数末尾的0
+ */
+var fixedNumber = function(num, length, bol) {
+  if (num) {
+    var parseNum = parseFloat(num)
+    num = parseNum.toFixed(length)
+    if (bol) {
+      num = parseFloat(num)
+    }
+  }
+  return num
+}
+// 价格保留两位小数
+var priceFormat = function (value, type) {
+  if (type && parseInt(value) === 0) {
+    return '免费'
+  } else {
+    var v = parseInt(value)/100
+    return v.toFixed(2)
+  }
+}
+
+// 价格获取整数或小数部分
+/**
+ * 
+ * @param value 价格
+ * @param type 操作类型  1 => 获取整数部分   2 => 获取小数部分
+ */
+var getPricePart = function (value, type) {
+  if (type == 1) {
+    // return Number(value / 100 || 0).toFixed(0) || 0
+    return Number(value / 100).toFixed(2).split('.')[0] || 0
+  } else if (type == 2) {
+    // return Number(value / 100).toFixed(2).toString().split('.')[1] || 0
+    return Number(value / 100).toFixed(2).toString().split('.')[1] || 0
+  }
+}
+
+var getTicketText = function (type) {
+  var obj = {
+    '10': '全场通用',
+    '20': '购买指定商品',
+    '30': '购买指定品类'
+  }
+  if (typeof type == 'number') {
+    type = type.toString()
+  }
+  return obj[type]
+}
+
+var getDateAfter_n = function (initDate, days, flag){
+		
+  if(!days){
+    return initDate;
+  }
+  // initDate = initDate.replace(/-/g,'');
+  var date;
+  // 是否设置了起始日期
+  if(!initDate){ // 没有设置初始化日期，就默认为当前日期
+        date = getDate();
+  }else{
+    var year = initDate.substring(0,4);
+    var month = initDate.substring(4,6);
+    var day = initDate.substring(6,8);
+    date = new Date(year, month-1, day); // 月份是从0开始的
+  }
+  date.setDate(date.getDate() + Number(days));
+
+  var yearStr = date.getFullYear();
+  var monthStr = ("0"+(date.getMonth()+1)).slice(-2, 8); // 拼接2位数月份
+  var dayStr = ("0"+date.getDate()).slice(-2, 8); // 拼接2位数日期
+  var result = "";
+  if(!flag){
+    result = yearStr+"年"+monthStr+"月"+dayStr+"日";
+  }else{
+    result = yearStr+flag+monthStr+flag+dayStr;
+  }
+  return result;
+}
+
+module.exports = {
+  getRandom: getRandom,
+  fixedNumber: fixedNumber,
+  priceFormat: priceFormat,
+  getPricePart: getPricePart,
+  getTicketText: getTicketText,
+  getDateAfter_n: getDateAfter_n
+}

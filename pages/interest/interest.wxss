@@ -1,0 +1,130 @@
+/**index.wxss**/
+
+page {
+  height: auto;
+}
+
+.container {
+  background-color: #fff;
+  height: 100%;
+}
+
+.main-content {
+  text-align: center;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  height: calc(100vh - 44px - 20px);
+  padding: 0 45rpx;
+  background-color: #fff;
+}
+.step-one {
+  font-size: 40rpx;
+  color: #FF6600;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 475rpx;
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}
+.step-two {
+  height: 100%;
+  position: relative;
+}
+.btn-box {
+  height: 90rpx;
+   position: absolute;
+  bottom: 52rpx;
+  left: 38rpx;
+}
+.next-step {
+  background: #FF6600;
+  height: 90rpx;
+  width: 584rpx;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  color: #fff;
+  border-radius:60px;
+}
+.please {
+  margin-top: 20rpx;
+}
+.top {
+  height: 98rpx;
+}
+.choose-image {
+  height: 62rpx;
+  width: 512rpx;
+}
+.choose-content {
+  background-color: #FFECDF;
+  border-radius:10rpx;
+  background:linear-gradient(90deg,#FFF3E6 0%,#FFECDF 100%);
+  box-shadow:0px 6px 12px rgba(206,141,94,0.1);
+  padding: 0 24rpx;
+  width: 660rpx;
+  box-sizing: border-box;
+}
+.card {
+  padding: 32rpx 0;
+  border-bottom: 1px solid #F5E3D1;
+  display: flex;
+}
+.card:last-child {
+  border-bottom: none;
+}
+.image-box {
+  width: 120rpx;
+  height: 120rpx;
+}
+.card-image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.text {
+  margin-left: 12rpx;
+  width: 440rpx;
+  text-align: left;
+}
+.title {
+  font-size: 30rpx;
+  color: #1D2023
+}
+.text-content {
+  width: 429rpx;
+  font-size: 24rpx;
+  color: #86939F;
+  margin-top: 12rpx;
+  overflow: hidden;
+  height: 34rpx;
+  text-overflow: ellipsis;
+}
+.check-box {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.circle {
+  width: 40rpx;
+  height: 40rpx;
+  background: #FFBE93;
+  border-radius: 50%;
+}
+.right {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 31rpx;
+  left: 0;
+}
+.circle-true {
+  width: 40rpx;
+  height: 40rpx;
+  background: #FF6600;
+  border-radius: 50%;
+}

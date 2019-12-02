@@ -1,0 +1,9 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "推送列表",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "backgroundColor":"#F2F2F2",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": false,
+  "disableScroll": true
+}

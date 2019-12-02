@@ -1,0 +1,138 @@
+<!--index.wxml-->
+<view class="container">
+  <navbar font-color="{{navBgColor}}" bgColor="{{bgColor}}" page="领取详情" bg-op="{{navOpcity}}" canBack="{{true}}" leftBtnStyle="{{leftBtn}}" title="{{navTitle}}"></navbar>
+  <view class="main-content">
+    <scroll-view class='scroll' scroll-y bindscroll='bindscroll'>
+      <view class='top-image'>
+        <image class='bg-image' src='{{topPicture}}'></image>
+      </view>
+      <!-- <wux-refresher id="wux-refresher" bind:pulling="onPulling" bind:refresh="onRefresh" pullingText="" refreshingText="" distance="{{ 50 }}" > -->
+        <view class="content">
+          <view class='content-box' wx:for="{{listData}}" wx:key="{{index}}">
+            <view class='title'>{{item.title}}</view>
+            <view class='text text1'>{{item.itemTitle}}</view>
+            <view class='title'>权益详情</view>
+            <view class='text text2'>
+              <view wx:for="{{item.description}}" wx:key="{{index}}">
+                {{item}}
+              </view>
+            </view>
+          </view>
+        </view>
+      <!-- </wux-refresher> -->
+    </scroll-view>
+  </view>
+  <view class='bottom' wx:for="{{listData}}" wx:key="{{index}}">
+    <view class='concat'>
+      <view style='text-align:center'>
+        <image class='concat-image' src='../../images/service.png'></image>
+      </view>
+      <view class='concat-text'>联系客服
+      </view>
+      <button class='concat-text concat-text1' show-message-card="{{true}}" open-type="contact">联系客服</button>
+    </view>
+    <view class='concat concat1' bindtap="showShareModal">
+      <view style='text-align:center'>
+        <image class='concat1-image' src='../../images/share_icon_black.png'></image>
+      </view>
+      <view class='concat-text'>分享
+      </view>
+    </view>
+    <form bindsubmit="pullDown" report-submit="{{ true }}">
+      <button wx:if="{{status == 20}}" class="furl" data-item="{{item}}" data-skuId='{{item.id}}' form-type="submit">收下</button>
+    </form>
+    <form bindsubmit="goUse" report-submit="{{ true }}">
+      <button wx:if="{{status == 10}}" class="furl furl1" data-item="{{item}}" data-skuId='{{item.id}}' form-type="submit">去使用</button>
+    </form>
+  </view>
+  <!-- 提示弹框 -->
+  <view class="codeModal" wx:if="{{codeModal}}">
+      <view class="modalContent1">
+          <view class="confirmTitle1">领取成功</view>
+          <view class="confirmSlogan1">领取成功，现在去使用？</view>
+          <view class='modal-bottom modal-bottom1'>
+            <view class='cancel-left' bindtap="closeModal">取消</view>
+            <form bindsubmit="goUse" report-submit="{{ true }}">
+              <button class='sure-right' form-type="submit">去使用</button>
+            </form>
+          </view>
+      </view>
+  </view>
+  <!-- 提示登录弹框 -->
+  <view class="codeModal" wx:if="{{loginModal}}">
+      <view class="modalContent1">
+          <view class="confirmTitle1">了解更多</view>
+          <view class="confirmSlogan1">为了能提供更好的服务我们想了解你更多</view>
+          <!-- <form bindsubmit="login" report-submit="{{ true }}">
+            <button class="confirmBtn2" form-type="submit">登录</button>
+          </form> -->
+          <view class='modal-bottom modal-bottom1'>
+            <view class='cancel-left' bindtap="closeLoginModal">取消</view>
+            <form report-submit="{{ true }}">
+              <button class='sure-right' open-type="getUserInfo" bindgetuserinfo="getUserInfoSuccess">好呀</button>
+            </form>
+          </view>
+      </view>
+  </view>
+  <!-- 提示弹框 -->
+  <view class="codeModal" wx:if="{{noPhoneModal}}">
+      <view class="modalContent1">
+          <view class="confirmTitle1">暂无福利领取权限</view>
+          <view class="confirmSlogan1">抱歉，您还不能领取该福利加入企业后可领取</view>
+          <!-- <form bindsubmit="login" report-submit="{{ true }}">
+            <button class="confirmBtn2" form-type="submit">登录</button>
+          </form> -->
+          <view class='modal-bottom modal-bottom1'>
+            <view class='cancel-left' bindtap="closeLoginModal1">取消</view>
+            <form bindsubmit="joinPhone" report-submit="{{ true }}">
+              <button class='sure-right' form-type="submit">我要加入</button>
+            </form>
+          </view>
+      </view>
+  </view>
+  <!-- 提示弹框 -->
+  <view class="codeModal" wx:if="{{noCompanyModal}}">
+      <view class="modalContent1">
+          <view class="confirmTitle1">暂无福利领取权限</view>
+          <view class="confirmSlogan1">抱歉，您还不能领取该福利加入企业后可领取</view>
+          <!-- <form bindsubmit="login" report-submit="{{ true }}">
+            <button class="confirmBtn2" form-type="submit">登录</button>
+          </form> -->
+          <view class='modal-bottom modal-bottom1'>
+            <view class='cancel-left' bindtap="closeLoginModal2">取消</view>
+            <form bindsubmit="joinCompany" report-submit="{{ true }}">
+              <button class='sure-right' form-type="submit">我要加入</button>
+            </form>
+          </view>
+      </view>
+  </view>
+  <!-- <view class="codeModal" wx:if="{{codeModal}}">
+      <view class="modalContent">
+          <view class="confirmTitle">领取成功</view>
+          <view class="confirmSlogan">领取成功，现在去使用？</view>
+          <form bindsubmit="goUse" report-submit="{{ true }}">
+            <button class="confirmBtn" form-type="submit">去使用</button>
+          </form>
+      </view>
+      <image src="../../images/close.png" bindtap="closeModal"></image>
+  </view> -->
+  <!-- <view class="codeModal" wx:if="{{loginModal}}">
+      <view class="modalContent">
+          <view class="confirmTitle">您还未登陆</view>
+          <view class="confirmSlogan">登录后使用福利</view>
+          <button class="confirmBtn" open-type="getUserInfo" bindgetuserinfo="getUserInfoSuccess"> 登录 </button>
+      </view>
+      <image class='close-image' src="../../images/close.png" bindtap="closeLoginModal"></image>
+  </view> -->
+  <view class='modal' wx:if='{{noModal}}'>
+    <view class='modal-box'>
+      <view class='modal-title'>账号未审核</view>
+      <view class='modal-content'>您的帐号审核中，暂无权益使用权限</view>
+      <form bindsubmit="confirm" report-submit="{{ true }}">
+        <button class="modal-btn" form-type="submit">确定</button>
+      </form>
+    </view>
+  </view>
+  <!-- 分享 -->
+    <share-modal modal-show="{{ modalShareShow }}" float-up="{{ floatUp }}"  my-property="{{pageImage}}"  my-title="{{pageTitle}}"   my-content="{{pageContent}}"></share-modal>
+</view>

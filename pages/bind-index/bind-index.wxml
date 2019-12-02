@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<view class="container">
+  <navbar font-color="{{'#333333'}}" bg-op="{{1}}" can-back="{{true}}" page="手机号登录" title="乐业卡" bgColor="#F8F8F8"></navbar>
+  <view class="main-content" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px);padding-top: calc(88rpx + {{statusBarHeight}}px);">
+    <view class='img-box'>
+    <view>
+      <image class="logo-img" src="../../images/logo.png"></image>
+      </view>
+      <view>
+        <image class="logo-img1" src="../../images/leye-img.png"></image>
+      </view>
+    </view>
+    <view class='please'>请选择登录方式</view>
+    <button class="confirmBtn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumberSuccess">微信用户快速绑定</button>
+    <button class="confirmBtn confirmBtn1"  bindtap="goPage">绑定手机号</button>
+    <!-- <view class="other-phone" data-page="bind-other" bindtap="goPage">使用其他号码绑定</view> -->
+  </view>
+</view>

@@ -1,0 +1,279 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": false,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.4",
+	"appid": "wxfb470448e41ebcc7",
+	"projectname": "fowork-miniprogram",
+	"cloudfunctionTemplateRoot": "",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
+			"list": [
+				{
+					"id": -1,
+					"name": "完善信息",
+					"pathName": "pages/complete-info/complete-info",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 25,
+					"name": "企业福利",
+					"pathName": "pages/join-company/join-company",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "领取页",
+					"pathName": "pages/get-details/get-details",
+					"query": "id=2552730780533250&qytype=11",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "企业申请",
+					"pathName": "pages/join-company/join-company",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "手机验证",
+					"pathName": "pages/bind-other/bind-other",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "主页",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": 1006
+				},
+				{
+					"id": -1,
+					"name": "协议",
+					"pathName": "pages/user-agreement/user-agreement",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "充值中心",
+					"pathName": "pages/voucher-center/voucher-center",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "偏好",
+					"pathName": "pages/interest/interest",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "解密手机号码",
+					"pathName": "pages/bind-index/bind-index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索入驻公司",
+					"pathName": "pages/apply-company/apply-company",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "二维码",
+					"pathName": "pages/erweima/erweima",
+					"query": "orderId=2573286638125318",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "卡包",
+					"pathName": "pages/my-card/my-card",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "中心",
+					"pathName": "pages/voucher-center/voucher-center",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "盒子详情",
+					"pathName": "pages/box-detail/box-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "推送记录列表",
+					"pathName": "pages/box-list/box-list",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "推送状态",
+					"pathName": "pages/box-list/box-list",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 18,
+					"name": "pages/box-list/box-list",
+					"pathName": "pages/box-list/box-list",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/mine/mine",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的订单",
+					"pathName": "pages/my-order/my-order",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的福利",
+					"pathName": "pages/my-welfare/my-welfare",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "兑换码详情",
+					"pathName": "pages/code-detail/code-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "外链详情",
+					"pathName": "pages/link-detail/link-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "适用商品",
+					"pathName": "pages/discount/discount",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "地址",
+					"pathName": "pages/address/address",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 26,
+					"name": "从开团小程序进入我的奖品",
+					"pathName": "pages/index/index",
+					"query": "to=awardList&from=mp",
+					"scene": 1037,
+					"referrerInfo": {
+						"appId": "wxc6e8d9b20dce7a67",
+						"extraData": "{}"
+					}
+				},
+				{
+					"id": -1,
+					"name": "从开团小程序进入地址",
+					"pathName": "pages/index/index",
+					"query": "to=address&from=mp",
+					"scene": 1037,
+					"referrerInfo": {
+						"appId": "wxc6e8d9b20dce7a67",
+						"extraData": "{}"
+					}
+				},
+				{
+					"id": 28,
+					"name": "pages/send-success/send-success",
+					"pathName": "pages/send-success/send-success",
+					"query": "end=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "适用商品",
+					"pathName": "pages/discount/discount",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "我的卡包",
+  "enablePullDownRefresh": false,
+  "disableScroll": false,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "navbar": "../../components/navbar/navbar",
+    "i-swipeout": "../../libs/iview/swipeout/index",
+    "tabbar": "../../components/tabbar/tabbar",
+    "wux-swipe-action-group": "../../libs/wux/swipe-action-group/index",
+    "wux-swipe-action": "../../libs/wux/swipe-action/index",
+    "wux-cell-group": "../../libs/wux/cell-group/index",
+    "wux-cell": "../../libs/wux/cell/index",
+    "wux-icon": "../../libs/wux/icon/index"
+  }
+}

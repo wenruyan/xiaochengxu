@@ -1,0 +1,4 @@
+.i-swipeout-wrap{ margin-top: 20rpx; background:#f7f7f7;position:relative;overflow:hidden}.i-swipeout-item{background:#f7f7f7;width:100%;padding:0 20px;box-sizing:border-box;transition:transform .2s ease;font-size:14px}.i-swipeout-content{white-space:nowrap;overflow:hidden}.i-swipeout-button-right-group{padding: 60rpx 0;box-sizing: border-box; position:absolute;right:-100%;top:0;height:100%;z-index:1;width:100%}.i-swipeout-button-right-item{height:100%;float:left;white-space:nowrap;box-sizing:border-box;display:flex;align-items:center;justify-content:center;border-radius:50rpx;
+
+
+}

@@ -1,0 +1,62 @@
+/**index.wxss**/
+
+page {
+  height: auto;
+}
+
+.container {
+  background-color: #fff;
+}
+
+.main-content {
+  text-align: center;
+  padding: 0 82rpx;
+}
+.img-box {
+  padding-top: 200rpx;
+  padding-bottom: 200rpx; 
+}
+.logo-img {
+  width: 252rpx;
+  height: 252rpx;
+  margin-bottom: 38rpx;
+}
+.logo-img1 {
+  width: 190rpx;
+  height: 70rpx;
+}
+.main {
+  font-size: 32rpx;
+  text-align: left;
+  border-top: 1rpx solid #CCC;
+  padding-top: 80rpx;
+}
+
+.other-phone {
+  color: #999999;
+  text-align: center;
+  font-size: 28rpx;
+  margin-top: 26rpx;
+}
+.please {
+  color: #1D2023;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 44rpx;
+}
+.confirmBtn{
+    width:584rpx;
+    height:90rpx;
+    line-height: 90rpx;
+    background:rgba(255,102,0,1);
+    border-radius:60px;
+    font-size:30rpx;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+}
+.confirmBtn1 {
+  background: #FFE0CB;
+  border: 1px solid #FF6600;
+  color: #FF6600;
+  margin-top: 20rpx;
+}

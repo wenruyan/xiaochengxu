@@ -1,0 +1,14 @@
+{
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "backgroundColor":"#FFFFFF",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
+  "usingComponents": {
+    "share-modal": "../../components/share-modal/share-modal",
+    "count-down": "../../components/count-down/index",
+    "tabbar": "../../components/tabbar/tabbar"
+  }
+}

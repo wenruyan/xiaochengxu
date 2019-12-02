@@ -1,0 +1,12 @@
+<!--components/login/login.wxml-->
+<view class="login-box" wx:if="{{showLogin}}">
+    <view class="login-con">
+        <view class="title">{{loginConf.title}}</view>
+        <view class="txt">{{loginConf.content}}</view>
+        <view class="btn-box">
+            <!-- <button bindtap="clickCancel" class="btn cancle">{{loginConf.cancelText}}</button> -->
+            <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="btn sure">{{loginConf.confirmText}}</button>
+        </view>
+    </view>
+</view>
+<!-- <loading bindtap="hideLoading" bindchange="loadingChange">{{_loginPanel.loadingText}}</loading> -->

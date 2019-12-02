@@ -1,0 +1,43 @@
+<wxs src="../../wxs/wxs.wxs" module="tools" />
+<view class="container">
+  <navbar font-color="{{'#333333'}}" bg-op="{{1}}" can-back="{{true}}"  title="适用商品" bgColor="#fff"></navbar>
+  <view class="main-content" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px);padding-top: calc(88rpx + {{statusBarHeight}}px);">
+  <scroll-view class='scroll' scroll-y bindscrolltolower="getList">
+    <view class='top'>
+      <image mode="widthFix" class='img' src="../../images/discount.png"/>
+      <view class='text-content' wx:for="{{topData}}" wx:key="{{index}}">
+        <view class="text-left"><text class='text-1'>{{tools.getPricePart(item.deductionNum, 1)}}</text><text class="text-2" wx:if="{{item.deductionNum < 10000}}">.{{tools.getPricePart(item.deductionNum, 2)}}</text></view>
+        <view class='text-right'>
+          <view class='des'>{{item.content}}</view>
+          <view class='time' wx:if="{{item.validityType == 10}}">有效期：{{item.startTime}}至{{item.endTime}}</view>
+          <view class='time' wx:if="{{item.validityType == 20}}">有效期：{{item.cpEndTime}}</view>
+        </view>
+      </view>
+    </view>
+     <!-- style="height: calc(100vh - 88rpx - 332rpx - {{statusBarHeight}}px);" -->
+    <view class='next' >
+      
+        <view class='no-record' wx:if="{{listData.length == 0}}">
+          <view wx:if="{{!noData}}">
+            <view class='no-record-text'>正在加载</view>
+          </view>
+          <view wx:else>
+            <view class='no-record-text'>暂无可使用商品</view>
+          </view>
+        </view>
+        <view class='list' wx:else>
+          <view class='list-detail noneMessage' wx:if="{{listData.length==0}}">
+            <view class='no-record-text'>暂无可使用商品</view>
+          </view>
+          <view class='list-box' wx:for="{{listData}}" wx:key="{{index}}" data-item='{{item}}' bindtap='goCard'>
+            <image class='list-img' src="{{item.picUrl}}"/>
+            <view class='title'>{{item.productTitle}}</view>
+            <view class="list-money"><text class='mony'>￥</text><text class='mony-1'>{{tools.getPricePart(item.price, 1)}}</text><text class="mony mony-2" wx:if="{{item.price < 10000}}">.{{tools.getPricePart(item.price, 2)}}</text></view>
+          </view>
+        </view>
+        <view class='loading-data' wx:if="{{listData.page < listData.totalPage}}">正在加载中……</view>
+    </view>
+    </scroll-view>
+    <!-- <view class='bottom'>一 已经到底啦 一</view> -->
+  </view>
+</view>

@@ -1,0 +1,145 @@
+page {
+  height: auto;
+}
+
+.container {
+  background-color: #fff;
+}
+
+.main-content {
+  text-align: center;
+}
+.select-bar {
+  width: 100%;
+  padding: 30rpx 0;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.select-bar .item {
+  text-align: center;
+  width: 33.33%;
+  float: left;
+  font-size: 28rpx;
+  color: #606972;
+  font-weight: bold;
+  position: relative;
+}
+.select-bar .item.active {
+  color: #1D2023;
+}
+.select-bar .item .line {
+  width: 0;
+  height: 4rpx;
+  background-color: #FF6600;
+  margin: 0 auto;
+  margin-top: 26rpx;
+  transition: width 0.2s;
+}
+.select-bar .item.active .line {
+  width: 100rpx;
+}
+.scroll {
+  height: 100%;
+  width: 100%;
+  background:#F2F2F2;
+}
+.list {
+  /* height: 100%; */
+  width: 100%;
+  background-color: #F2F2F2;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.list-detail {
+  width: 690rpx;
+  height: 200rpx;
+  padding: 20rpx;
+  background-color: #fff;
+  margin-bottom: 16rpx;
+  box-shadow:0px 4px 6px rgba(206,141,94,0.02);
+  box-sizing: border-box;
+  border-radius: 20rpx;
+}
+.list-detail1 {
+  height: 256rpx;
+  padding-bottom: 12rpx;
+}
+.box {
+  display: flex
+}
+.list-box {
+  width: 160rpx;
+  height: 160rpx;
+}
+.list-image {
+  width: 160rpx;
+  height: 160rpx;
+}
+.next-box {
+  width: 368rpx;
+  margin-left: 20rpx;
+  text-align: left;
+  height: 160rpx;
+}
+.title {
+  color: #3F454B;
+  font-size: 28rpx;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.guige {
+  height: 64rpx;
+  font-size: 24rpx;
+  color: #8A8A8A;
+  margin-top: 6rpx;
+  margin-bottom: 6rpx;
+}
+.money {
+  font-size: 24rpx;
+  color: #3F454B;
+  font-weight: bold;
+}
+.mount {
+  color: #1D2023;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 66rpx;
+}
+.already {
+  color: #FF6600;
+}
+.tuihuo {
+  color: #B5B5B5;
+}
+.last {
+  height: 160rpx;
+}
+.erweima {
+  display: flex;
+  justify-content: space-between;
+  height: 34rpx;
+  margin-top: 20rpx;
+  padding-top: 12rpx;
+  border-top: 1px solid #F8F8F8
+}
+.erweima-text {
+  color: #1D2023;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.erweima-image {
+  width: 11rpx;
+  height: 21rpx;
+}
+.no-record {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 206rpx;
+  box-sizing: border-box;
+  color: #707070;
+  font-size: 28rpx;
+  background-color: #F2F2F2; 
+}

@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+  <navbar font-color="{{'#333333'}}" bg-op="{{1}}" title="保存分享页"></navbar>
+  <view class="main-content" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px);padding-top: calc(88rpx + {{statusBarHeight}}px);" wx:if="{{sharePicTmpPath}}">
+    <image class="bg" src="../../images/share-bg-pic.png"></image>
+    <image class="share-pic" src="{{sharePicTmpPath}}"></image>
+    <view class="btn btn-ht" bindtap="checkPermission">保存图片分享朋友圈</view>
+  </view>
+  <canvas style="width: 750px; height: 1334px;" id="myCanvas" canvas-id="myCanvas"></canvas>
+</view>

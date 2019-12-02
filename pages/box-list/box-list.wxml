@@ -1,0 +1,49 @@
+<!-- index.wxml -->
+ <wxs src="../../wxs/wxs.wxs" module="tools" />
+ <view class="container">
+   <navbar canBack="{{true}}" title="推送列表"></navbar>
+  <scroll-view class="main-content" scroll-y="true" style="padding-top: calc(88rpx + {{statusBarHeight}}px);height: calc(100vh - {{statusBarHeight}}px - 88rpx);" bindscrolltolower='getListData'>
+     <view class="line"></view>
+     <view class="item" wx:for="{{packageList}}">
+      <image class="new" src="../../images/new.png" wx:if="{{item.hrQrStatus == '20' && item.sendStatus == 20}}"></image>
+       <view class="top ov-h">
+        <view class="package-name f-l {{item.hrQrStatus == '20' && item.sendStatus == 20 ? 'newName' : ''}}">
+          {{item.name}}
+        </view>
+        <view class="status s-change f-r flex flex-align-center" data-recordId="{{item.id}}" data-boxId="{{item.welfareId}}" wx:if="{{item.hrQrStatus == '20' && item.sendStatus == 20}}" data-rewardDate="{{item.rewardDate}}" bindtap="changePac">
+          更换套餐
+          <i-icon type="enter" color="#F59023" size="20" i-class="icon" />
+        </view>
+        <view class="status s-no f-r" wx:elif="{{item.hrQrStatus == '30'}}">不通过</view>
+        <view class="status s-wait f-r" wx:elif="{{item.hrQrStatus == 10 && item.sendStatus == '20'}}">
+          待发放
+        </view>
+        <view class="status s-yes f-r" wx:elif="{{item.hrQrStatus == 10 && item.sendStatus == '10'}}">
+          已发放
+        </view>
+        <view class="status s-yes f-r" wx:elif="{{item.hrQrStatus == 20 && item.sendStatus == '10'}}">
+          已发放
+        </view>
+       </view>
+       <view class="date" wx:if="{{item.hrQrStatus != '30'}}">发放时间：{{item.rewardDate}}</view>
+      <view class="package-content ov-h" wx:if="{{item.hrQrStatus == '20' && item.sendStatus == 20}}">
+        <view class="pac-item f-l {{pacItem.isDefault == 10 ? 'choosed' : ''}}" wx:for="{{item.setMealList}}" wx:for-item="pacItem">
+          <image src="{{pacItem.url}}"></image>
+          <view class="price">￥{{tools.priceFormat(pacItem.nowPrice)}}</view>
+          <view class="pac-name">{{pacItem.name}}</view>
+        </view>
+      </view>
+      <view class="qy-content" wx:else>
+        <block  wx:for="{{item.child}}" wx:for-item="qyItem">
+          <view class="qy-item" wx:if="{{qyItem.type == 10}}">
+            <image src="{{qyItem.discountScope == 10 ? '../../images/coupon-for-all.png' : '../../images/coupon-for-select.png'}}"></image>
+            <view class="amount">{{tools.getPricePart(qyItem.deductionNum, 1)}}<text class="small" wx:if="{{qyItem.deductionNum < 10000}}">.{{tools.getPricePart(qyItem.deductionNum, 2)}}</text></view>
+            <view class="number">{{qyItem.quantity}}</view>
+          </view>
+          <image class="qy-item" src="{{qyItem.url}}" wx:elif="{{qyItem.type != 10}}"></image>
+        </block>
+      </view>
+     </view>
+     <view class="line"></view>
+   </scroll-view>
+ </view>

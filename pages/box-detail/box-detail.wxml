@@ -1,0 +1,98 @@
+ <!--index.wxml-->
+ <wxs src="../../wxs/wxs.wxs" module="tools" />
+ <view class="container">
+   <navbar canBack="{{true}}" title="{{title}}"></navbar>
+   <view class="date" style="padding-top: calc(88rpx + {{statusBarHeight}}px);">福利发放时间：{{rewardDate}}</view>
+   <scroll-view class="main-content ov-h" scroll-y="true" style="height: calc(100vh - {{statusBarHeight}}px - 290rpx);">
+     <view class="item" wx:for="{{packageList}}">
+       <image class="left-icon" src="../../images/package-left.png"></image>
+       <view class="item-head ov-h" data-index="{{index}}" bindtap="showQtList">
+         <view class="package-name f-l">{{item.comboName}}</view>
+         <view class="market-price f-l">￥{{tools.priceFormat(item.oriPrice)}}</view>
+         <view class="choosed f-r" data-index="{{index}}" data-comboId="{{item.comboId}}" bindtap="choosedPackage">
+           <image src="../../images/gift-sure.png" wx:if="{{item.isDefault == 10}}"></image>
+           <view wx:else></view>
+         </view>
+         <view class="now-price f-r">{{tools.priceFormat(item.nowPrice, 1)}}</view>
+       </view>
+       <view class="item-body ov-h" hidden="{{!item.showQt}}">
+         <view class="qt-item f-l" wx:for="{{item.qyList}}"  wx:for-item="qtItem" data-id="{{item.comboId}}" wx:for-index="qtIndex" bindtap="showQyList" data-index="{{ index }}" data-qIndex="{{qtIndex}}">
+           <block wx:if="{{qtItem.qyType == 10}}">
+             <view class="icon">
+               <image src="{{qtItem.discountScope == 10 ? '../../images/coupon-for-all.png' : '../../images/coupon-for-select.png'}}"></image>
+               <view class="amount">{{tools.getPricePart(qtItem.deductionNum, 1)}}<text class="small" wx:if="{{qtItem.deductionNum < 10000}}">.{{tools.getPricePart(qtItem.deductionNum, 2)}}</text></view>
+                <view class="number">{{qtItem.quantity}}</view>
+             </view>
+             <view class="qt-name">满减券{{qtItem.quantity > 1 ? 'x' + qtItem.quantity : ''}}</view>
+           </block>
+           <block wx:else>
+            <image class="icon" src="{{qtItem.topPic}}"></image>
+            <view class="qt-name">{{qtItem.mainTitle}}</view>
+           </block>
+         </view>
+       </view>
+     </view>
+   </scroll-view>
+   <view class="bottom flex flex-pack-justify">
+     <form bindsubmit="cancelBox" report-submit="{{ true }}">
+       <button class='cancelBtn btn' hover-class="cancelBtn-hover" form-type="submit">放弃</button>
+     </form>
+     <form bindsubmit="sureBox" report-submit="{{ true }}">
+       <button class='sureBtn btn' hover-class="sureBtn-hover" form-type="submit">确认套餐</button>
+     </form>
+   </view>
+   <view class="confirm" wx:if="{{giveUpConfirm}}">
+     <view class="bg"></view>
+     <view class="confirm-body">
+       <view class="content">是否放弃推送本次权益</view>
+       <view class="btn-wrap flex flex-pack-justify">
+         <view class="btn cancel" bindtap="giveUp">放弃权益</view>
+         <view class="btn sure" bindtap="notGiveUp">我再看看</view>
+       </view>
+     </view>
+   </view>
+   <view class="confirm" wx:if="{{sureConfirm}}">
+     <view class="bg"></view>
+     <view class="confirm-body">
+       <view class="content">套餐提交成功</view>
+       <view class="btn-wrap flex flex-pack-center">
+         <view class="btn sure" bindtap="sureSuccess">确定</view>
+       </view>
+     </view>
+   </view>
+   <view class="confirm" wx:if="{{ swiperConfirm }}">
+     <view class="bg" catchtouchmove="myCatchTouch"></view>
+     <swiper class="detail-swiper" circular="{{true}}" previous-margin="75rpx" next-margin="75rpx" current="{{ detailSwiperCurrent }}" bindchange="detailSwiperChange">
+       <swiper-item wx:for="{{ qyList }}">
+         <view class="qy-content {{index == detailSwiperCurrent ? 'active' : ''}}">
+           <view class="qy-head">
+             <image src="../../images/qy-detail.png"></image>
+             <view>权益详情</view>
+           </view>
+           <image class="qy-pic" src="../../images/Mask.png" wx:if="{{item.qyType == 10}}"></image>
+           <image class="qy-pic" src="{{item.picUrl}}" wx:else></image>
+           <view class="price-wrap">
+             <text class="unit">￥</text>
+             <text class="int">{{tools.getPricePart(item.deductionNum, 1)}}</text>
+             <text class="small">.{{tools.getPricePart(item.deductionNum, 2)}}</text>
+           </view>
+           <scroll-view class="qy-detail" scroll-y="true">
+             <view class="title">{{item.mainTitle}}</view>
+             <view class="subTitle" wx:if="{{item.qyType != 10}}">{{item.subTitle}}</view>
+             <view class="valid-date" wx:else>有效期：{{item.validityType == 20 ? '领取后' + tools.getPricePart(item.validTime, 1) + '天' : item.startTime + '-' + item.endTime}}</view>
+             <view class="rule" wx:if="{{item.qyType != 10}}">权益规则</view>
+             <view class="desc" wx:if="{{item.qyType != 10}}">
+               <view wx:for="{{item.description}}" wx:for-item="dItem">
+                 {{dItem}}
+               </view>
+             </view>
+             <view class="desc mtop" wx:else>
+               <view class="">{{tools.getTicketText(item.discountScope)}}，满{{tools.getPricePart(item.meetNum, 1)}}元可用</view>
+             </view>
+           </scroll-view>
+         </view>
+       </swiper-item>
+     </swiper>
+     <i-icon i-class="icon-close" type="close" color="#DFDFDF" size="35" bindtap="closeSwiper"></i-icon>
+   </view>
+ </view>

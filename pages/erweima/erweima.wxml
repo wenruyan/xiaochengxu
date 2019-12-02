@@ -1,0 +1,114 @@
+<!-- pages/erweima/erweima.wxml -->
+<!-- 待开启：10 已开启：20 已使用：30 已过期：40 -->
+<wxs module="priceFilter" src="../../wxs/wxs.wxs"></wxs>
+<view class="box">
+    <navbar font-color="{{'#333333'}}" bg-op="{{navOpcity}}" canBack="{{true}}"></navbar>
+    <view class="topContent {{data.twocode[0].usestatus == 90 || data.twocode[0].usestatus == 95 ? '': 'topbg'}}">
+        <image src="{{data.url}}" mode="aspecFit"></image>
+        <view class="skuDesc">
+            <text class="skuTitle">{{data.name}}</text>
+            <view class="simpleDesc">
+                <view class="desc">
+                    <view>下单日期</view>
+                    <view>{{data.create_date}}</view>
+                </view>
+                <view class="desc">
+                    <view>订单编号</view>
+                    <view style='font-size: 20rpx;'>{{data.orderCodeId}}</view>
+                </view>
+                <view class="desc">
+                    <view>实付金额</view>
+                    <view>￥{{priceFilter.priceFormat(data.allprice)}}<text wx:if="{{data.mortgageamount>0}}">(已优惠{{data.mortgageamount}}元)</text></view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="mainContent">
+        <view class="title">
+            <view wx:if="{{barCodeType == 20}}" class="name" selectable="false" space="false" decode="false">二维码</view>
+            <view wx:if="{{barCodeType == 30}}" class="name" selectable="false" space="false" decode="false">兑换码</view>
+        </view>
+        <view wx:if="{{barCodeType != 30}}" class='erweima-list' wx:for="{{data.orderDetail}}" wx:key="{{index}}" data-item='{{item}}' bindtap='showReadyModal'>
+          <image class='img {{item.status == 91?"erweima-list1":""}}' src="../../images/qrcode-black.png" />
+          <view class='time {{item.status == 91?"erweima-list1":""}}'>有效期：{{item.endtime}}</view>
+          <view class="use-btn" wx:if="{{item.status == 90}}" selectable="false" space="false" decode="false" data-item='{{item}}' catchtap="showModal">标为已使用</view>
+          <image class='pass-img'  wx:if="{{item.status == 100}}" src="../../images/used-already.png" />
+          <image class='pass-img' wx:if="{{item.status == 91}}" src="../../images/expired-pass.png" />
+        </view>
+        <view wx:if="{{barCodeType == 30}}" class='duihuanma-list' bindtap='{{item.status != 91?"clickCopy":""}}' wx:for="{{data.orderDetail}}" wx:key="{{index}}" data-item='{{item}}'>
+          <view class='duihuanma-top {{item.status == 91?"duihuanma-list1":""}}'>
+            <view class='duihuanma-box'>
+              <view class='duihuanma-text'>{{item.content}}</view>
+              <view class='duihuanma-time'>有效期：{{item.endtime}}</view>
+            </view>
+          </view>
+          <view wx:if="{{item.status != 91}}" class='duihuanma-bottom'>
+            <view class='bottom-left'><image class='copy-code' src="../../images/copy-code.png"></image>点击复制</view>
+            <button wx:if="{{item.status == 90}}" catchtap='changeStatus' data-item='{{item}}' class='bottom-right' selectable="false" space="false" decode="false">标为已使用</button>
+          </view>
+          <image class='pass-img'  wx:if="{{item.status == 100}}" src="../../images/used-already.png" />
+          <image class='pass-img' wx:if="{{item.status == 91}}" src="../../images/expired-pass.png" />
+        </view>
+        <view class="title">权益详情</view>
+        <view class="description">
+            <view wx:for="{{data.productDescription}}" wx:key="{{item.index}}">{{item}}</view>
+            <view class="contact">
+                如有疑问请
+                <view>
+                    联系客服
+                    <button show-message-card="{{true}}" open-type="contact"></button>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="codeModal" wx:if="{{codeModal}}">
+        <view class="modalContent">
+            <view class="confirmTitle">确认开启</view>
+            <view class="confirmSlogan">开启后，此二维码将标记为已使用，请谨慎操作</view>
+            <button class="confirmBtn" bindtap="useCode">去使用</button>
+        </view>
+        <image src="../../images/close.png" bindtap="closeModal"></image>
+    </view>
+    <view class="modal" wx:if="{{usedModalShow}}">
+        <view class="modal-content">
+            <view class="title">标记为已使用</view>
+            <view class="tip">福利被标记已使用之后无法恢复请谨慎操作</view>
+            <view class='modal-bottom'>
+                <text class="cancel" selectable="false" space="false" decode="false" bindtap="hideModal">取消</text>
+                <text class="confirm" selectable="false" space="false" decode="false" bindtap="onClick" data-item='{{noUseData}}'>标记</text>
+            </view>
+        </view>
+    </view>
+    <view class='modal' wx:if="{{modalShow}}">
+      <view class='erweima-content'>
+        <view class='top-content'>
+          <view class='top-text'>
+            <image src="../../images/scan.png"></image>
+            向商家扫码
+          </view>
+            <image class='erweima-img' src="{{noUseCode}}"></image>
+          <view class='time'>有效期：{{noUseTime}}</view>
+        </view>
+        <view class='bottom-content'>
+          <view class='cancel' bindtap="hideModal">关闭</view>
+          <view class='sign' data-item='{{noUseData}}' bindtap="onClick">标为已使用</view>
+        </view>
+      </view>
+    </view>
+    <view class='modal' wx:if="{{alreadyModal}}">
+      <view class='erweima-content'>
+        <view class='top-content'>
+          <view class='top-text'>
+            <image src="../../images/scan.png"></image>
+            向商家扫码
+          </view>
+            <image class='erweima-img' src="{{useCode}}"></image>
+          <view class='time'>有效期：{{useTime}}</view>
+        </view>
+        <view class='bottom-content1' bindtap='closeAlready'>
+          关闭
+        </view>
+        <image class='used-full-img' src="../../images/used_full.png"></image>
+      </view>
+    </view>
+</view>

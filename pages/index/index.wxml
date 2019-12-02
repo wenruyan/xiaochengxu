@@ -1,0 +1,290 @@
+<!--index.wxml-->
+<wxs src="../../wxs/wxs.wxs" module="tools" />
+<view class="container">
+  <view class="hr flex" bindtap="goBoxList" style="top: {{statusBarHeight + 8}}px" wx:if='{{showRoleHr}}'>
+  <!-- <view class="hr flex" bindtap="goBoxList" style="top: {{statusBarHeight + 8}}px"> -->
+    <image src="../../images/gear_icon.png"></image>
+    <view class="text">管理</view>
+    <view class="newBox" wx:if="{{newBox}}"></view>
+  </view>
+  <navbar font-color="{{navBgColor}}" bg-op="{{navOpcity}}" canBack="{{false}}" title="乐业卡"></navbar>
+  <scroll-view scroll-top="{{scrollTop}}" scroll-y="{{canScroll}}" bindscroll="nowScroll" class="main-content" wx:if='{{showIndex}}'>
+    <view class='top-image'>
+      <image class='bg-image' src='../../images/top-image.png'></image>
+      <image wx:if='{{showGif}}' class='bg-gif' src='../../images/pullingIcon.gif'></image>
+    </view>
+    <wux-refresher id="wux-refresher" noRefreshing="{{canRefresh}}" bind:pulling="onPulling" bind:refresh="onRefresh" disablePullingRotation='{{true}}' showIcon="{{false}}" pullingText='hhh' refreshingText="" distance="{{ 50 }}" >
+      <view class="content">
+        <view class='user'>
+          <image class='user-image' src='../../images/user.png'></image>
+          <view class='user-text' wx:key="{{index}}">
+            <view class='user-box flex-pack-justify'>
+              <view class='user-left'>
+                <view class='login' wx:if="{{step == 10}}">欢迎使用乐业卡</view>
+                <view class='login' wx:if="{{step != 10}}">Hi,{{name}}</view>
+                <!-- <view class='greetings'>{{greetings}}</view> -->
+              </view>
+              <view class='company-box'>
+                  <!-- 公司卡 -->
+                  <image  wx:if="{{step == 40 && instate != 40 && verifyStatus != 20}}" class='company-image' src='{{companyLogo?companyLogo:"https://cdn.focus-base.com/pic/2554606508163585.jpg"}}'></image>
+                  <!-- 个人卡 -->
+                  <image   wx:if="{{step == 20 || step == 30 || instate == 40 || verifyStatus == 20}}" class='company-image' src='{{userUrl}}'></image>
+              </view>
+            </view>
+            <view wx:if="{{noCheck}}" class='show-check show-check1'>
+              企业审核中
+            </view>
+            <view wx:if="{{waitCheck}}" class='show-check'>
+              官方审核中
+            </view>
+            <view wx:if="{{!noCheck && !waitCheck}}" class='show-check show-check2'>
+            </view>
+            <!-- 新用户 -->
+            <button wx:if="{{step == 10}}" class='company btn-beg' bindtap='showLogin'> 登录 </button>
+            <view class='show-company' wx:if="{{step == 40 && instate != 40 && verifyStatus != 20}}">
+                {{companyName}}
+            </view>
+            <!-- 微信授权用户，手机绑定用户（未加入企业),离职 -->
+            <view class="btn-beg" wx:if="{{step == 20 || step == 30 || instate == 40 || verifyStatus == 20}}">
+              <form bindsubmit="joinCompany" report-submit="{{ true }}">
+                <button class="company" form-type="submit">加入企业</button>
+              </form>
+                <!-- <button class='company' bindtap='joinCompany'> 加入企业 </button> -->
+            </view>
+            <view class='share'>
+              <image class='share-image' bindtap="showShareModal" src='../../images/share_with_blackbg.png'></image>
+            </view>
+          </view>
+          <view class='user-text2'></view>
+        </view>
+        <view class='jinggang'>
+          <view class='jinggang-item' wx:for="{{listData}}" wx:key="{{index}}" data-isArticle='{{item.isArticle}}' data-type='{{item.type}}' data-id='{{item.id}}' data-skuId='{{item.skuId?item.skuId:""}}' data-qyId='{{item.qyId}}' data-status='{{item.status}}' data-qytype='{{item.qyType}}' data-topPicture='{{item.picture}}' bindtap='clickJingang'>
+            <image class='jinggang-img' src='{{item.picture}}'></image>
+            <view class='jinggang-text'>{{item.title}}</view>
+          </view>
+        </view>
+        <view class='week'>
+          <!-- 第一个不可收起 -->
+          <view class='this-week' wx:if="{{weflareList.length > 0}}">
+            <view class="this-name {{!weflareNum ? 'just' : ''}}">
+              <image class='week-image' src='../../images/week-just.png' wx:if="{{!weflareNum}}"></image>
+              <image class='week-image' src='../../images/week.png' wx:else></image>
+              <view class='week-text' wx:if="{{!weflareNum}}">{{weflareName}}</view>
+              <view class='week-text' wx:else>本周福利</view>
+            </view>
+            <view class='week-content'>
+              <view class='week-box'>
+                <view class='week-item' wx:for-items='{{weflareList}}' wx:for-item="item1" wx:key='{{index}}'>
+                <view class='img-box' data-week='1' data-id='{{item1.id}}' data-status='{{item1.status}}' data-skuId='{{item1.skuId?item1.skuId:""}}' data-qytype='{{item1.type}}' data-discountScope='{{item1.discountScope}}' data-topPicture='{{item1.topPicture}}' data-index='{{index}}' data-num='{{num}}'  bindtap='goDetails' data-cardid="{{item1.cardId}}" data-carddetailid="{{item1.cardDetailId}}">
+                  <image class='week-sku' src='{{item1.picture}}' wx:if="{{item1.type != '10'}}"></image>
+                  <block wx:else>
+                    <image class="week-sku ticket" src="{{item1.discountScope == 10 ? '../../images/coupon-for-all.png' : '../../images/coupon-for-select.png'}}"></image>
+                    <view class="amount">{{tools.getPricePart(item1.deductionNum, 1)}}<text class="small" wx:if="{{item1.deductionNum < 10000}}">.{{tools.getPricePart(item1.deductionNum, 2)}}</text></view>
+                  </block>
+                </view>
+                  <view class='week-center' data-week='1' bindtap='goDetails' data-topPicture='{{item1.topPicture}}' data-skuId='{{item1.skuId?item1.skuId:""}}' data-id='{{item1.id}}' data-qytype='{{item1.type}}' data-discountScope='{{item1.discountScope}}' data-index='{{index}}' data-num='{{num}}' data-status='{{item1.status}}' data-cardid="{{item1.cardId}}" data-carddetailid="{{item1.cardDetailId}}">
+                    <view class='week-center-name'>{{item1.title}}</view>
+                    <view class='week-center-text' wx:if="{{item1.type != 10}}">{{item1.subtitle}}</view>
+                    <view class="week-center-text" wx:else>{{tools.getTicketText(item1.discountScope)}}，满{{tools.getPricePart(item1.meetNum, 1)}}元可用</view>
+                  </view>
+                  <view class='week-last'>
+                    <form bindsubmit="goUse" report-submit="{{ true }}">
+                      <button wx:if='{{item1.status==10}}' data-week='1' class='week-btn' data-subtitle='{{item1.subtitle}}' data-type='{{item1.type}}' data-discountScope='{{item1.discountScope}}' data-qytitle='{{item1.title}}' data-id='{{item1.id}}' data-index='{{index}}' data-skuId='{{item1.skuId?item1.skuId:""}}' data-cardid="{{item1.cardId}}" data-carddetailid="{{item1.cardDetailId}}" data-topPicture='{{item1.topPicture}}' form-type="submit">去使用</button>
+                    </form>
+                    <form bindsubmit="immeGet" report-submit="{{ true }}">
+                      <button wx:if='{{item1.status==20}}' data-week='1' class='week-btn week-btn1' data-type='{{item1.type}}' data-qytitle='{{item1.title}}' data-subtitle='{{item1.subtitle}}' data-topPicture='{{item1.topPicture}}' data-id='{{item1.id}}' data-skuId='{{item1.skuId?item1.skuId:""}}' data-index='{{index}}' form-type="submit">立即领取</button>
+                    </form>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 后续可收起 -->
+          <view class='last-week this-week' wx:for="{{otherWeflareList}}" wx:for-item="item2" wx:for-index="idx" wx:key="{{idx}}">
+            <view class="this-name {{!item2.num ? 'just' : ''}}">
+              <image class='week-image' src='../../images/week-just.png' wx:if="{{!item2.num}}"></image>
+              <image class='week-image' src='../../images/week.png' wx:else></image>
+              <view class='week-text' wx:if="{{item2.num === listLength}}">本周福利</view>
+              <view class='week-text' wx:if="{{item2.num === (listLength-1)}}">上周福利</view>
+              <view class='week-text' wx:if="{{!item2.num}}">{{item2.name}}</view>
+              <view class='week-text' wx:if="{{item2.num != listLength && item2.num != (listLength-1)}}">{{item2.weekTime}}</view>
+              <button class='pack-up' bindtap='packUp' data-kai='kai' data-index='{{idx}}' data-show='{{item2.show}}' wx:if="{{item2.show == 10}}">展开</button>
+              <button class='pack-up' bindtap='packUp1' data-guan='guan' data-index='{{idx}}' data-show='{{item2.show}}' wx:if="{{item2.show == 20}}">收起</button>
+            </view>
+            <view class='week-content' wx:if='{{item2.show == 10}}'>
+              <view class='week-box week-box-x'>
+                <view class='week-item week-item-image'>
+                  <view class='hideInfo {{item2.weflareList.length > 6?"last-week-box1":"last-week-box"}}' wx:for-items="{{item2.weflareList}}" wx:for-item="item3" wx:key="{{index}}" data-topPicture='{{item2.topPicture}}' data-week='2' bindtap='goDetails' data-num='{{item2.num}}' data-index='{{idx}}'  data-skuId='{{item3.skuId?item3.skuId:""}}' data-id='{{item3.id}}' data-qytype='{{item3.type}}' data-discountScope='{{item3.discountScope}}' data-status='{{item3.status}}' data-cardid="{{item3.cardId}}" data-carddetailid="{{item3.cardDetailId}}">
+                    <image class='last-week-image' src='{{item3.picture}}' wx:if="{{item3.type != 10}}"></image>
+                    <block wx:else>
+                      <image class="last-week-image ticket" src="{{item3.discountScope == 10 ? '../../images/coupon-for-all.png' : '../../images/coupon-for-select.png'}}"></image>
+                      <view class="amount">{{tools.getPricePart(item3.deductionNum, 1)}}<text class="small" wx:if="{{item3.deductionNum < 10000}}">.{{tools.getPricePart(item3.deductionNum, 2)}}</text></view>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class='week-content' wx:if='{{item2.show == 20}}'>
+              <view class='week-box'>
+                <view class='week-item' wx:for-items="{{item2.weflareList}}" wx:for-item="item3" wx:for-index="{{index2}}" wx:key="{{index2}}">
+                  <view class='img-box'>
+                    <image class='week-sku' src='{{item3.picture}}' data-week='2' bindtap='goDetails' data-index='{{idx}}' data-num='{{item2.num}}' data-index='{{idx}}' data-status='{{item3.status}}' data-skuId='{{item3.skuId?item3.skuId:""}}' data-id='{{item3.id}}' data-topPicture='{{item3.topPicture}}' data-qytype='{{item3.type}}' data-discountScope='{{item3.discountScope}}' data-cardid="{{item3.cardId}}" data-carddetailid="{{item3.cardDetailId}}" wx:if="{{item3.type != 10}}"></image>
+                    <block wx:else>
+                      <image class="week-sku ticket" src="{{item3.discountScope == 10 ? '../../images/coupon-for-all.png' : '../../images/coupon-for-select.png'}}"></image>
+                      <view class="amount">{{tools.getPricePart(item3.deductionNum, 1)}}<text class="small" wx:if="{{item3.deductionNum < 10000}}">.{{tools.getPricePart(item3.deductionNum, 2)}}</text></view>
+                    </block>
+                  </view>
+                  <view class='week-center' bindtap='goDetails' data-index='{{idx}}' data-num='{{item2.num}}' data-week='2' data-index='{{idx}}' data-topPicture='{{item3.topPicture}}' data-skuId='{{item3.skuId?item3.skuId:""}}' data-status='{{item3.status}}' data-id='{{item3.id}}' data-qytype='{{item3.type}}' data-discountScope='{{item3.discountScope}}' data-cardid="{{item3.cardId}}" data-carddetailid="{{item3.cardDetailId}}">
+                    <view class='week-center-name'>{{item3.title}}</view>
+                    <!-- <view class='week-center-text'>{{item3.subtitle}}</view> -->
+                    <view class='week-center-text' wx:if="{{item3.type != 10}}">{{item3.subtitle}}</view>
+                    <view class="week-center-text" wx:else>{{tools.getTicketText(item3.discountScope)}}，满{{tools.getPricePart(item3.meetNum, 1)}}元可用</view>
+                  </view>
+                  <view class='week-last'>
+                    <form bindsubmit="goUse" report-submit="{{ true }}">
+                      <button wx:if='{{item3.status==10}}' data-week='2' class='week-btn' data-subtitle='{{item3.subtitle}}' data-id='{{item3.id}}' data-skuId='{{item3.skuId?item3.skuId:""}}' data-index='{{idx}}' data-type='{{item3.type}}' data-discountScope='{{item3.discountScope}}' data-qytitle='{{item3.title}}' data-topPicture='{{item3.topPicture}}' data-cardid="{{item3.cardId}}" data-carddetailid="{{item3.cardDetailId}}" form-type="submit">去使用</button>
+                    </form>
+                    <form bindsubmit="immeGet" report-submit="{{ true }}">
+                      <button wx:if='{{item3.status==20}}' data-week='2' class='week-btn week-btn1'  data-type='{{item3.type}}' data-subtitle='{{item3.subtitle}}' data-topPicture='{{item3.topPicture}}' data-id='{{item3.id}}' data-qytitle='{{item3.title}}' data-skuId='{{item3.skuId?item3.skuId:""}}' data-index='{{idx}}'  form-type="submit">立即领取</button>
+                    </form>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </wux-refresher>
+  </scroll-view>
+  <tabbar tabbar="{{tabbar}}"></tabbar>
+  <view class='modal' wx:if='{{false}}'>
+  <!-- noModal -->
+    <view class='modal-box'>
+      <view class='modal-title'>账号未审核</view>
+      <view class='modal-content'>您的帐号审核中，暂无权益使用权限</view>
+      <form bindsubmit="confirm" report-submit="{{ true }}">
+        <button class="modal-btn" form-type="submit">确定</button>
+      </form>
+    </view>
+  </view>
+  <!-- 领取弹框 -->
+  <view class="codeModal" wx:if="{{showModal}}">
+      <view class="modalContent">
+          <view class='modal-img'>
+            <image class='modal-image' src='{{topPicture}}'></image>
+          </view>
+          <view class="confirmTitle">{{qyTitle}}</view>
+          <view class="confirmSlogan">{{subtitle}}</view>
+          <view class='modal-bottom'>
+            <view class='cancel-left' bindtap="closeModal">取消</view>
+            <!-- <view data-status='1' class='sure-right' bindtap='clickFurl'>收下</view> -->
+            <form bindsubmit="clickFurl" report-submit="{{ true }}">
+              <button class='sure-right' form-type="submit">收下</button>
+            </form>
+          </view>
+          <view class='already-box' wx:if='{{noStatusFurl}}'>
+          <image class='already-img' src='../../images/already-get.png'></image>
+          </view>
+      </view>
+      <!-- <image class='close-image' src="../../images/close.png" bindtap="closeModal"></image> -->
+  </view>
+  <!-- 提示登录弹框 -->
+  <view class="codeModal" wx:if="{{loginModal}}">
+      <view class="modalContent1">
+          <view class="confirmTitle1">了解更多</view>
+          <view class="confirmSlogan1">为了能提供更好的服务我们想了解你更多</view>
+          <!-- <form bindsubmit="login" report-submit="{{ true }}">
+            <button class="confirmBtn2" form-type="submit">登录</button>
+          </form> -->
+          <view class='modal-bottom modal-bottom1'>
+            <view class='cancel-left' bindtap="closeLoginModal">取消</view>
+            <form report-submit="{{ true }}">
+              <button class='sure-right' open-type="getUserInfo" bindgetuserinfo="getUserInfoSuccess">好呀</button>
+            </form>
+          </view>
+      </view>
+  </view>
+  <!-- 提示弹框 -->
+  <view class="codeModal" wx:if="{{noPhoneModal}}">
+      <view class="modalContent1">
+          <view class="confirmTitle1">暂无福利领取权限</view>
+          <view class="confirmSlogan1">抱歉，您还不能领取该福利加入企业后可领取</view>
+          <!-- <form bindsubmit="login" report-submit="{{ true }}">
+            <button class="confirmBtn2" form-type="submit">登录</button>
+          </form> -->
+          <view class='modal-bottom modal-bottom1'>
+            <view class='cancel-left' bindtap="closeLoginModal1">取消</view>
+            <form bindsubmit="joinPhone" report-submit="{{ true }}">
+              <button class='sure-right' form-type="submit">我要加入</button>
+            </form>
+          </view>
+      </view>
+  </view>
+  <!-- 提示弹框 -->
+  <view class="codeModal" wx:if="{{noCompanyModal}}">
+      <view class="modalContent1">
+          <view class="confirmTitle1">暂无福利领取权限</view>
+          <view class="confirmSlogan1">抱歉，您还不能领取该福利加入企业后可领取</view>
+          <!-- <form bindsubmit="login" report-submit="{{ true }}">
+            <button class="confirmBtn2" form-type="submit">登录</button>
+          </form> -->
+          <view class='modal-bottom modal-bottom1'>
+            <view class='cancel-left' bindtap="closeLoginModal2">取消</view>
+            <form bindsubmit="joinCompany" report-submit="{{ true }}">
+              <button class='sure-right' form-type="submit">我要加入</button>
+            </form>
+          </view>
+      </view>
+  </view>
+  <view class="codeModal" wx:if="{{jingangModal}}">
+      <view class="modalContent1">
+          <view class="confirmTitle1">温馨提示</view>
+          <view class="confirmSlogan1">关注【乐业权益】公众号，立即领取该福利</view>
+          <button class='confirmBtn2' show-message-card="{{true}}"  bindtap="closeJingangModal" open-type="contact">回复“乐业”领取</button>
+      </view>
+      <image class='close-image' src="../../images/close.png" bindtap="closeJingangModal"></image>
+  </view>
+  <!-- 分享 -->
+    <share-modal modal-show="{{ modalShareShow }}" float-up="{{ floatUp }}"></share-modal>
+  <view class="giftModal" wx:if="{{giftModal}}">
+    <view class="bg" catchtouchmove="myCatchTouch"></view>
+    <view class="beforeRecive" hidden="{{ recivedGift }}">
+      <view class="modalContent">
+        <image src="../../images/gift-modal-bg.png"></image>
+        <view class="title">收到来自HR的神秘礼物</view>
+        <view class="gift-name">{{giftName}}</view>
+      </view>
+      <form bindsubmit="reciveGift" report-submit="{{ true }}">
+        <button class='confirmBtn' hover-class="confirmBtn-hover" form-type="submit">领取权益包</button>
+      </form>
+    </view>
+    <view class="list" style="top: {{recivedGift ? '154rpx' : '-888rpx'}}">
+      <image src="../../images/gift-modal-bg1.png"></image>
+      <view class="content-wrap">
+        <view class="list-content">
+          <view class="item flex" wx:for="{{giftList}}" wx:key="{{index}}">
+            <image class="icon" src="{{item.picUrl}}" wx:if="{{item.qyType != '10'}}"></image>
+            <view class="icon" wx:else>
+              <image src="{{item.discountScope == 10 ? '../../images/coupon-for-all.png' : '../../images/coupon-for-select.png'}}"></image>
+               <view class="amount">{{tools.getPricePart(item.deductionNum, 1)}}<text class="small" wx:if="{{item.deductionNum < 10000}}">.{{tools.getPricePart(item.deductionNum, 2)}}</text></view>
+                <!-- <view class="number">{{item.quantity}}</view> -->
+            </view>
+            <view class="text">
+              <view class="title">{{item.mainTitle}}</view>
+              <view class="desc" wx:if="{{item.qyType != 10}}">{{item.subTitle}}</view>
+              <block wx:else>
+                <view class="desc">{{tools.getTicketText(item.discountScope)}}，满{{tools.getPricePart(item.meetNum, 1)}}元可用</view>
+                <view class="desc">有效期：{{item.validityType == 20 ? tools.getDateAfter_n('', item.validTime, '.') : item.startTime + '-' + item.endTime}}</view>
+              </block>
+            </view>
+          </view>
+        </view>
+        <view class="btn-wrap">
+          <form bindsubmit="useGift" report-submit="{{ true }}">
+            <button class='confirmBtn' hover-class="confirmBtn-hover" form-type="submit">去使用</button>
+          </form>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

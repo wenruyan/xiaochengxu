@@ -1,0 +1,85 @@
+page {
+  height: auto;
+}
+
+.container {
+  background-color: #fff;
+  height: 100%;
+}
+
+.main-content {
+  text-align: center;
+  background-color: #F1F1F1;
+  overflow: hidden;
+}
+.scroll-wrap {
+  height: calc(100vh - 44px - 20px);
+  box-sizing: border-box;
+  position: relative;
+  padding: 30rpx;
+  background: #F1F1F1;
+}
+.no-record {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+.scroll {
+  height: 100%;
+  float: left;
+  width:100%;
+}
+
+.list {
+  background-color: #fff;
+  overflow: hidden;
+  min-height: 100%;
+  padding: 0 24rpx;
+  border-radius: 10rpx;
+}
+.list-content {
+  height: 184rpx;
+  padding: 32rpx 0;
+  border-bottom: 1px solid #E8E8E8;
+  box-sizing: border-box;
+  display: flex;
+}
+/* .list-content:last-child {
+  border-bottom: none;
+} */
+.image {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 12rpx;
+}
+.text-box {
+  width: 370rpx;
+  height: 100%;
+  text-align: left;
+}
+.title1 {
+  color: #1D2023;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}
+.title2 {
+  color: #86939F;
+  font-size: 24rpx;
+  margin-top: 12rpx;
+}
+.btn {
+  display: flex;
+  align-items: center;
+}
+.recharge {
+  width: 140rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background:linear-gradient(270deg,#FF870E 0%,#FFAF46 100%);
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 60rpx;
+}

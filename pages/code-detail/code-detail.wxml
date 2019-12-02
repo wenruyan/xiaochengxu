@@ -1,0 +1,58 @@
+<view class="container">
+  <navbar font-color="{{navBgColor}}" bgColor="{{bgColor}}" page="{{page}}" bg-op="{{navOpcity}}" canBack="{{true}}" leftBtnStyle="{{leftBtn}}" title="{{navTitle}}"></navbar>
+  <view class="main-content">
+    <scroll-view class='scroll' scroll-y bindscroll='bindscroll'>
+      <view class='top-image'>
+        <image class='bg-image' src='{{listData.picture}}'></image>
+      </view>
+      <view class="content">
+          <view class='content-box'>
+          <view class='use-btn' wx:if="{{listData.status == 90}}" data-item="{{listData}}" bindtap="showModal">标为已使用</view>
+              <image class='al-user' wx:if="{{listData.status == 100}}" src="../../images/check-used.png"/>
+            <view class='title'>{{listData.name}}</view>
+            <view class='text text1'>{{listData.itemtitle}}</view>
+            <view class='copy-box' bindtap='copyLink'>
+              <view class='circle1'></view>
+              <view class='circle2'></view>
+              <view class='line'></view>
+              <view class='info'>
+                <view class='code'>{{listData.codestring}}</view>
+                <view class='time'>有效期：{{listData.endtime}} </view>
+              </view>
+              <view class='copy'>复制</view>
+            </view>
+            <view class='title-des'>权益详情</view>
+            <view class='text text2'>
+              <view class='description' wx:for="{{listData.description}}" wx:key="{{index}}">
+                {{item}}
+              </view>
+              <view style='line-height:40rpx;'>如有疑问请<text style='color:#2454F5'>联系客服</text></view>
+            </view>
+          </view>
+        </view>
+    </scroll-view>
+  </view>
+  <view class="modal" wx:if="{{modalShow}}">
+        <view class="modal-content">
+            <view class="title">标记为已使用</view>
+            <view class="tip">福利被标记已使用之后无法恢复请谨慎操作</view>
+            <view class='modal-bottom'>
+                <text class="cancel" selectable="false" space="false" decode="false" bindtap="hideModal">取消</text>
+                <text class="confirm" selectable="false" space="false" decode="false" bindtap="onClick">标记</text>
+            </view>
+        </view>
+    </view>
+    <!-- 提示弹框 -->
+  <view class="codeModal" wx:if="{{modalCopy}}">
+      <view class="modalContent1">
+          <view class="confirmTitle1">复制成功</view>
+          <view class="confirmSlogan1">确认是否跳转至兑换页面？</view>
+          <view class='modal-bottom modal-bottom1'>
+            <view class='cancel-left' bindtap="closeModalCopy">取消</view>
+            <form bindsubmit="goUse" report-submit="{{ true }}">
+              <button class='sure-right' form-type="submit">确认</button>
+            </form>
+          </view>
+      </view>
+  </view>
+</view>

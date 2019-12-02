@@ -1,0 +1,13 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "微信登录",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "backgroundColor": "#F2F2F2",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": false,
+  "disableScroll": false,
+  "usingComponents": {
+    "share-modal": "../../components/share-modal/share-modal",
+    "count-down": "../../components/count-down/index"
+  }
+}

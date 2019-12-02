@@ -1,0 +1,24 @@
+.countdown-wrap {
+  overflow: hidden;
+  height: 32rpx;
+  line-height: 32rpx;
+}
+
+.countdown-wrap .time, .countdown-wrap .h {
+  float: left;
+  font-size: 22rpx;
+  font-weight: 400;
+}
+
+.countdown-wrap .time{
+  color: #FFFFFF;
+  display: block;
+  padding: 0 4rpx;
+  border-radius: 4rpx;
+  min-width:30rpx;
+  text-align:center;
+}
+
+.countdown-wrap .h {
+  padding: 0 4rpx;
+}

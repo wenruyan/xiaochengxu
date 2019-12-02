@@ -1,0 +1,49 @@
+/* 模态框 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal .modal-content {
+    width: 590rpx;
+    height: 632rpx;
+    background: #fff;
+    border-radius: 20rpx;
+    padding: 0 48rpx;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .modal .modal-content .gift-img {
+    width: 260rpx;
+    height: 260rpx;
+    margin-top: 30rpx;
+  }
+  .modal .modal-content .text {
+    margin-top: 30rpx;
+    text-align: center;
+    color: #333;
+    font-size: 32rpx;
+  }
+  .modal .modal-content .get-btn {
+    width: 286rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    background: #FF6600;
+    color: #fff;
+    font-size: 36rpx;
+    border-radius: 100rpx;
+    margin-top: 54rpx;
+  }
+  .modal .close-img{
+    position: absolute;
+    width: 74rpx;
+    height: 74rpx;
+    bottom: 230rpx;
+  }

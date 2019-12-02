@@ -1,0 +1,8 @@
+<!--index.wxml-->
+<view class="container">
+  <navbar font-color="{{'#333333'}}" bg-op="{{1}}" title="登录" left-btn-text="首页" to-page-path="index"></navbar>
+  <view class="main-content" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px);padding-top: calc(88rpx + {{statusBarHeight}}px);">
+    <image class="logo" src="../../images/logo.png"></image>
+    <button class="btn btn-ht" open-type="getUserInfo" bindgetuserinfo="getUserInfoSuccess" type="primary">微信用户一键登录</button>
+  </view>
+</view>

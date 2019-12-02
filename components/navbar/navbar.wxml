@@ -1,0 +1,17 @@
+<!--components/navbar.wxml-->
+<cover-view class='navbar' style="{{border ? '' : 'border-bottom: none;'}}opacity: {{bgOp}};background-color: {{bgColor}}" wx:if="{{bgOp == 1}}">
+  <cover-view class="top" style="width: 100%;height: {{statusBarHeight + 'px'}};opacity: {{bgOp}};background-color: {{bgColor}}"></cover-view>
+  <cover-view class='bg' style="opacity: {{bgOp}};background-color: {{bgColor}}"></cover-view>
+  <cover-view class='page-title'  style="opacity: {{bgOp}};top: {{statusBarHeight + 'px'}};color: {{fontColor}}">{{title}}</cover-view>
+  <cover-view class="icon-back" style="top: {{statusBarHeight + 'px'}};" bindtap="goBack">
+    <cover-image class='icon-back-image' src='../../images/back-{{leftBtnStyle}}.png' wx:if="{{canBack}}"></cover-image>
+  </cover-view>
+  <cover-view class="icon-back-text" style="top: {{statusBarHeight + 'px'}};color: {{fontColor}};font-size:{{fontSize}}" bindtap="goBack">{{leftBtnText}}</cover-view>
+</cover-view>
+<view class='navbar' style="{{border ? '' : 'border-bottom: none;'}}" wx:else>
+  <view class="top" style="width: 100%;height: {{statusBarHeight + 'px'}};opacity: {{bgOp}};background-color: {{bgColor}}"></view>
+  <view class='bg' style="opacity: {{bgOp}};background-color: {{bgColor}}"></view>
+  <image class='icon-back {{leftBtnStyle}}' style="top: {{statusBarHeight + 'px'}};" bindtap="goBack" src='../../images/back-{{leftBtnStyle}}.png' wx:if="{{canBack}}"></image>
+  <view class="icon-back-text" style="top: {{statusBarHeight + 'px'}};color: {{fontColor}}" bindtap="goBack">{{leftBtnText}}</view>
+  <view class='page-title'  style="top: {{statusBarHeight + 'px'}};color: {{fontColor}};font-size:{{fontSize}}">{{title}}</view>
+</view>

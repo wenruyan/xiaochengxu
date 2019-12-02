@@ -1,0 +1,47 @@
+<!-- pages/directPayDesc/directPayDesc.wxml -->
+<!-- 即将到账：10 已到账：20 充值失败：30 -->
+<wxs module="priceFilter" src="../../wxs/wxs.wxs"></wxs>
+<view class="box">
+    <navbar font-color="{{'#333333'}}" bg-op="{{navOpcity}}" canBack="{{true}}"></navbar>
+    <view class="topContent {{data.orderstatus == 30 ? 'topbg ':''}}">
+        <image src="{{data.url}}" mode="aspecFit"></image>
+        <view class="skuDesc">
+            <text class="skuTitle">{{data.name}}</text>
+            <view class="simpleDesc">
+                <view class="desc">
+                    <view>下单日期</view>
+                    <view>{{data.create_date}}</view>
+                </view>
+                <view class="desc">
+                    <view>订单编号</view>
+                    <view style='font-size:20rpx'>{{data.orderCodeId}}</view>
+                </view>
+                <view class="desc">
+                    <view>实付金额</view>
+                    <view>￥{{priceFilter.priceFormat(data.amountprice)}}<text wx:if="{{data.mortgageamount>0}}">(已优惠{{data.mortgageamount}}元)</text></view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="mainContent">
+        <view class="title">充值账号</view>
+        <view class="accountNumber">
+            <view>{{data.rechargeaccount}}</view>
+            <view class="skuStatus will" wx:if="{{data.rechargestatus == 40}}">即将到账</view>
+            <view class="skuStatus already" wx:elif="{{data.rechargestatus == 10}}">已到账</view>
+            <view class="skuStatus fail" wx:elif="{{data.rechargestatus == 30}}">充值失败</view>
+        </view>
+        <view class="payFail" wx:if="{{data.data.rechargestatus == 30}}">{{data.createTime}}充值失败，充值金额已原路返回</view>
+        <view class="title">权益详情</view>
+        <view class="description">
+            <view wx:for="{{data.productDescription}}" wx:key="{{item.index}}">{{item}}</view>
+            <view class="contact">
+                如有疑问请
+                <view>
+                    联系客服
+                    <button show-message-card="{{true}}" open-type="contact"></button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

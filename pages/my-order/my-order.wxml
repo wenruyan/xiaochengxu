@@ -1,0 +1,166 @@
+<!--index.wxml-->
+<view class="container">
+  <navbar font-color="{{'#333333'}}" bg-op="{{1}}" can-back="{{true}}" title="订单" bgColor="#fff"></navbar>
+  <view class="main-content" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px);padding-top: calc(88rpx + {{statusBarHeight}}px);">
+    <view class='select-bar'>
+      <view class='item {{activeSelect == 1 ? "active" : ""}}' data-type="1" data-tab="0" bindtap='changeSelect'>
+        全部
+        <view class='line'></view>
+      </view>
+      <view class='item  {{activeSelect == 2 ? "active" : ""}}' data-type="2" data-tab="20" bindtap='changeSelect1'>
+        待发货
+        <view class='line'></view>
+      </view>
+      <view class='item  {{activeSelect == 3 ? "active" : ""}}' data-type="4" data-tab="50" bindtap='changeSelect2'>
+        已完成
+        <view class='line'></view>
+      </view>
+    </view>
+    <view wx:if="{{activeSelect==1}}" class="scroll-wrap" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px - 100rpx)">
+      <scroll-view class='scroll' scroll-y bindscrolltolower="getOrderList">
+        <view class='no-record' wx:if="{{listData1.length == 0}}">
+          <view wx:if="{{!noData}}">
+            <view class='no-record-text'>正在加载</view>
+          </view>
+          <view wx:else>
+            <view class='no-record-text'>暂无订单信息</view>
+          </view>
+        </view>
+        <view class='list' wx:else>
+          <view class='list-detail noneMessage' wx:if="{{listData1.length==0}}">
+            <view class='no-record-text'>暂无订单信息</view>
+          </view>
+          <view class='list-detail {{item.validCou>0?"list-detail1":""}}' wx:for="{{listData1}}" data-id="{{item}}" bindtap='{{item.orderType == 50 && item.orderStatus == 20 ? "toToast":"toOrderDetail"}}' data-goodsId="{{item.id}}">
+            <view class='box'>
+              <view class='list-box'>
+                <image class='list-image' src='{{item.url}}'></image>
+              </view>
+              <view class='next-box'>
+                <view class='title'>{{item.name}}</view>
+                <view class='guige'>{{item.attributeName}}</view>
+                <view class='money'>实付 ￥{{item.gprice}}</view>
+              </view>
+              <view class='last'>
+                <view class='title already' wx:if="{{item.orderType == 30 && item.rechargeStatus == 10}}">已完成</view>
+                <view class='title wait' wx:if="{{item.orderType == 30 && item.rechargeStatus == 30}}">退款中</view>
+                <view class='title wait' wx:if="{{item.orderType == 30 && item.rechargeStatus == 40}}">待发货</view>
+                <view class='title tuihuo' wx:if="{{item.orderType == 30 && item.rechargeStatus == 50}}">已退款</view>
+                <view class='title wait' wx:if="{{item.orderType == 50 && item.orderStatus == 20}}">待发货</view>
+                <view class='title already' wx:if="{{item.orderType == 50 && item.orderStatus == 30}}">已完成</view>
+                <view class='title already' wx:if="{{item.orderType == 50 && item.orderStatus == 50}}">已完成</view>
+                <view class='mount'>x{{item.quantity}}</view>
+              </view>
+            </view>
+            <view class='erweima' wx:if="{{item.validCou >0 && item.barCodeType == 20}}">
+              <view class='erweima-text'>还剩{{item.validCou}}个二维码有效</view>
+              <image class='erweima-image' src='../../images/arrow-erweima.png'></image>
+            </view>
+            <view class='erweima' wx:if="{{item.validCou >0 && item.barCodeType == 30}}">
+              <view class='erweima-text'>还剩{{item.validCou}}个券码有效</view>
+              <image class='erweima-image' src='../../images/arrow-erweima.png'></image>
+            </view>
+          </view>
+        </view>
+        <view class='loading-data' wx:if="{{listData1.page < listData1.totalPage}}">正在加载中……</view>
+      </scroll-view>
+    </view>
+    <view wx:if="{{activeSelect==2}}" class="scroll-wrap" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px - 100rpx)">
+      <scroll-view class='scroll' scroll-y bindscrolltolower="getOrderList1">
+        <view class='no-record' wx:if="{{listData2.length == 0}}">
+          <view wx:if="{{!noData2}}">
+            <view class='no-record-text'>正在加载</view>
+          </view>
+          <view wx:else>
+            <view class='no-record-text'>暂无订单信息</view>
+          </view>
+        </view>
+        <view class='list' wx:else>
+          <view class='list-detail noneMessage' wx:if="{{listData12.length==0}}">
+            <view class='no-record-text'>暂无订单信息</view>
+          </view>
+          <view class='list-detail  {{item.validCou>0?"list-detail1":""}}' wx:for="{{listData2}}" data-id="{{item}}" bindtap='{{item.orderType == 50 && item.orderStatus == 20 ? "toToast":"toOrderDetail"}}'  data-goodsId="{{item.id}}">
+            <view class='box'>
+              <view class='list-box'>
+                <image class='list-image' src='{{item.url}}'></image>
+              </view>
+              <view class='next-box'>
+                <view class='title'>{{item.name}}</view>
+                <view class='guige'>{{item.attributeName}}</view>
+                <view class='money'>实付 ￥{{item.gprice}}</view>
+              </view>
+              <view class='last'>
+              <view class='title already' wx:if="{{item.orderType == 30 && item.rechargeStatus == 10}}">已完成</view>
+                <view class='title wait' wx:if="{{item.orderType == 30 && item.rechargeStatus == 30}}">退款中</view>
+                <view class='title wait' wx:if="{{item.orderType == 30 && item.rechargeStatus == 40}}">待发货</view>
+                <view class='title tuihuo' wx:if="{{item.orderType == 30 && item.rechargeStatus == 50}}">已退款</view>
+                <view class='title wait' wx:if="{{item.orderType == 50 && item.orderStatus == 20}}">待发货</view>
+                <view class='title already' wx:if="{{item.orderType == 50 && item.orderStatus == 30}}">已完成</view>
+                <view class='title already' wx:if="{{item.orderType == 50 && item.orderStatus == 50}}">已完成</view>
+                <!-- <view class='title wait' wx:if="{{item.status == 10}}">待发货</view>
+                <view class='title already' wx:if="{{item.status == 20}}">已完成</view>
+                <view class='title tuihuo' wx:if="{{item.status == 30}}">已退货</view> -->
+                <view class='mount'>x{{item.quantity}}</view>
+              </view>
+            </view>
+            <view class='erweima' wx:if="{{item.validCou >0}}">
+              <view class='erweima-text'>还剩{{item.validCou}}个二维码有效</view>
+              <image class='erweima-image' src='../../images/arrow-erweima.png'></image>
+            </view>
+          </view>
+        </view>
+        <view class='loading-data' wx:if="{{list2.page < list2.totalPage}}">正在加载中……</view>
+      </scroll-view>
+    </view>
+    <view wx:if="{{activeSelect==3}}" class="scroll-wrap" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px - 100rpx)">
+      <scroll-view class='scroll' scroll-y bindscrolltolower="getOrderList2">
+        <view class='no-record' wx:if="{{listData3.length == 0}}">
+          <view wx:if="{{!noData3}}">
+            <view class='no-record-text'>正在加载</view>
+          </view>
+          <view wx:else>
+            <view class='no-record-text'>暂无订单信息</view>
+          </view>
+        </view>
+        <view class='list' wx:else>
+          <view class='list-detail noneMessage' wx:if="{{listData13.length==0}}">
+            <view class='no-record-text'>暂无订单信息</view>
+          </view>
+          <view class='list-detail {{item.validCou>0?"list-detail1":""}}' wx:for="{{listData3}}"  data-id="{{item}}" bindtap='toOrderDetail' data-goodsId="{{item.id}}">
+            <view class='box'>
+              <view class='list-box'>
+                <image class='list-image' src='{{item.url}}'></image>
+              </view>
+              <view class='next-box'>
+                <view class='title'>{{item.name}}</view>
+                <view class='guige'>{{item.attributeName}}</view>
+                <view class='money'>实付 ￥{{item.gprice}}</view>
+              </view>
+              <view class='last'>
+              <view class='title already' wx:if="{{item.orderType == 30 && item.rechargeStatus == 10}}">已完成</view>
+                <view class='title wait' wx:if="{{item.orderType == 30 && item.rechargeStatus == 30}}">退款中</view>
+                <view class='title wait' wx:if="{{item.orderType == 30 && item.rechargeStatus == 40}}">待发货</view>
+                <view class='title tuihuo' wx:if="{{item.orderType == 30 && item.rechargeStatus == 50}}">已退款</view>
+                <view class='title wait' wx:if="{{item.orderType == 50 && item.orderStatus == 20}}">待发货</view>
+                <view class='title already' wx:if="{{item.orderType == 50 && item.orderStatus == 30}}">已完成</view>
+                <view class='title already' wx:if="{{item.orderType == 50 && item.orderStatus == 50}}">已完成</view>
+                <!-- <view class='title wait' wx:if="{{item.status == 10}}">待发货</view>
+                <view class='title already' wx:if="{{item.status == 20}}">已完成</view>
+                <view class='title tuihuo' wx:if="{{item.status == 30}}">已退货</view> -->
+                <view class='mount'>x{{item.quantity}}</view>
+              </view>
+            </view>
+            <view class='erweima' wx:if="{{item.validCou >0 && item.barCodeType == 20}}">
+              <view class='erweima-text'>还剩{{item.validCou}}个二维码有效</view>
+              <image class='erweima-image' src='../../images/arrow-erweima.png'></image>
+            </view>
+            <view class='erweima' wx:if="{{item.validCou >0 && item.barCodeType == 30}}">
+              <view class='erweima-text'>还剩{{item.validCou}}个券码有效</view>
+              <image class='erweima-image' src='../../images/arrow-erweima.png'></image>
+            </view>
+          </view>
+        </view>
+        <view class='loading-data' wx:if="{{list3.page < list3.totalPage}}">正在加载中……</view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,41 @@
+<view class="container">
+  <navbar font-color="{{'#333333'}}" bg-op="{{0}}" canBack="{{true}}" title="加入企业福利" bgColor="{{'#F8F8F8'}}"></navbar>
+  <view class="main-content" style="padding-top: calc(88rpx + {{statusBarHeight}}px);">
+    <!-- <wux-refresher id="wux-refresher" bind:pulling="onPulling" bind:refresh="onRefresh" pullingText="" refreshingText="" distance="{{ 50 }}"> -->
+      <view class="content">
+        <view class='image-box'>
+          <image class='fuli-image' src='../../images/fuli-card.png'></image>
+          <view class='text-box'>
+            <view class='text'>这张卡谁不爱</view>
+            <view class='text1'>老板爱 员工爱 人人爱</view>
+          </view>
+        </view>
+        <view class='form'>
+          <view class='title'><text class='star-text'>*</text>企业名称</view>
+          <view class='input-wrap'>
+            <input class='input' value="{{inputValue1}}" bindinput="bindInput1" placeholder="请填写正确的企业名称"/>
+          </view>
+          <view class='title'><text class='star-text'>*</text>联系人</view>
+          <view class='input-wrap'>
+            <input class='input' value="{{inputValue2}}" bindinput="bindInput2" placeholder="请填写正确的联系人名称"/>
+          </view>
+          <view class='title'><text class='star-text'>*</text>联系电话</view>
+          <view class='input-wrap'>
+            <input class='input' value="{{inputValue3}}" bindinput="bindInput3" type='number' maxlength='11' placeholder="请填写正确的联系方式"/>
+          </view>
+          <view class='title'><text class='star-text'>*</text>企业人数</view>
+          <view class='input-wrap'>
+            <input class='input' value="{{inputValue4}}" bindinput="bindInput4" type='number' placeholder="请输入企业人数"/>
+          </view>
+          <view class='agree'>
+            <image bindtap='clickAgree' class='no-image' src="{{agreeStatus==true?'../../images/no-agree.png':'../../images/agree.png'}}"></image>
+            我已阅读并同意<view class='blue' bindtap='goAgreement'>《企业用户协议》</view>
+          </view>
+          <form bindsubmit="apply" report-submit="{{ true }}">
+            <button class="apply" disabled="{{inputValue1!=''&&inputValue2!=''&&inputValue3!=''&&inputValue4!=''&&agreeStatus==false?false:true}}" form-type="submit">立即申请</button>
+          </form>
+        </view>
+      </view>
+    <!-- </wux-refresher> -->
+  </view>
+</view>

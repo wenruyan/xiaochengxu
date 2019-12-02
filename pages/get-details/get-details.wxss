@@ -1,0 +1,280 @@
+/**index.wxss**/
+
+page {
+  height: auto;
+}
+
+.container {
+  background-color: #F1F1F1;
+  height: 100vh;
+  position: relative
+}
+
+.main-content {
+  text-align: center;
+  background-color: #F1F1F1;
+  /* overflow: auto; */
+  position: relative;
+  height: calc(100vh - 150rpx);
+}
+
+.scroll {
+  height: calc(100vh - 150rpx);
+}
+
+.content {
+  background-color: #F1F1F1;
+  position: relative;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.content-box {
+  position: relative;
+  background: #fff;
+  top: -50rpx;
+  padding: 10rpx 36rpx 60rpx 36rpx;
+  /* height: 500rpx; */
+  width: 690rpx;
+  margin: 0 auto;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  text-align: left;
+  min-height:  780rpx;
+  overflow: hidden;
+}
+.top-image {
+  height: 400rpx;
+}
+.bg-image {
+  /* height: 400rpx; */
+  width: 100%;
+}
+.title {
+  color:#1D2023;
+  font-size: 30rpx;
+  font-weight: bold; 
+  margin-bottom: 20rpx;
+  margin-top: 30rpx;
+}
+.text {
+  color: #606972;
+  font-size: 24rpx;
+  /* margin-bottom: 40rpx; */
+}
+.text1 {
+  padding-bottom: 30rpx;
+  border-bottom: 1px solid #E6E6E6;
+}
+.text2 {
+  margin-bottom: 110rpx;
+}
+.bottom {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 150rpx;
+  background: #fff;
+  display: flex;
+  padding: 30rpx 32rpx 30rpx 48rpx;
+  box-sizing: border-box;
+}
+.concat {
+  position: relative;
+}
+.concat1 {
+  margin-left: 64rpx;
+}
+.concat-image {
+  width: 40rpx;
+  height: 34rpx;
+}
+.concat1-image {
+  width: 32rpx;
+  height: 32rpx;
+}
+.concat-text {
+  color: #3F454B;
+  font-size: 24rpx;
+  /* margin-top: 10rpx; */
+  padding: 0;
+  background-color: rgba(0,0,0,0);
+  width: 100%;
+  border: none;
+}
+.concat-text1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 90rpx;
+}
+.furl {
+  width: 400rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  border-radius: 60rpx;
+  background: #FF6600;
+  color: #fff;
+  font-size: 30rpx;
+  margin-left: 54rpx;
+}
+.furl1 {
+  background: #FFE0CB;
+  border: 1px solid #FF6600;
+  color: #FF6600;
+  font-weight: bold;
+}
+.codeModal{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.codeModal .modalContent{
+    width:620rpx;
+    height:422rpx;
+    background:rgba(255,255,255,1);
+    border-radius:10rpx;
+    display: flex;  
+    flex-direction: column;
+    justify-content: space-around;  
+    align-items: center;
+    margin-bottom: 60rpx;
+}
+.codeModal .modalContent .confirmTitle{
+    font-size:40rpx;
+    font-weight:bold;
+    color:rgba(29,32,35,1);
+}
+.codeModal .modalContent .confirmSlogan{
+    width:452rpx;
+    height:108rpx;
+    font-size:30rpx;
+    color:rgba(96,105,114,1);
+    text-align: center
+}
+.codeModal .modalContent .confirmBtn{
+    width:522rpx;
+    height:90rpx;
+    background:rgba(255,102,0,1);
+    border-radius:60px;
+    font-size:30rpx;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+}
+.codeModal image{
+    width: 66rpx;
+    height: 66rpx;
+}
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 1111;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-box {
+  width: 620rpx;
+  height: 422rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  text-align: center;
+  padding: 72rpx 50rpx 30rpx 50rpx;
+  box-sizing: border-box;
+}
+.modal-title {
+  color: #1D2023;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.modal-content {
+  color: #606972;
+  font-size: 30rpx;
+  margin-top: 32rpx;
+  margin-bottom: 108rpx;
+}
+.modal-btn {
+  width: 520rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  border-radius: 60rpx;
+  background: #FF6600;
+  color: #fff;
+  font-size: 30rpx;
+}
+.codeModal .modalContent1{
+    width:620rpx;
+    height:388rpx;
+    background:rgba(255,255,255,1);
+    border-radius:10rpx;
+    display: flex;  
+    flex-direction: column;
+    justify-content: space-around;  
+    align-items: center;
+    /* margin-bottom: 60rpx; */
+    position: relative;
+}
+.codeModal .modalContent1 .confirmTitle1{
+    font-size:40rpx;
+    color:rgba(29,32,35,1);
+    font-weight: bold;
+    padding:72rpx 0 30rpx 0;
+}
+.modal-bottom1 {
+  width: 620rpx;
+  border-top: 1px solid #eee;
+}
+.codeModal .modalContent1 .confirmSlogan1{
+    width:452rpx;
+    height:108rpx;
+    font-size:30rpx;
+    color:rgba(96,105,114,1);
+    text-align: center;
+}
+.modal-bottom {
+  height: 116rpx;
+  line-height: 116rpx;
+  border-top: 1px solid #E6E6E6;
+  box-sizing: border-box;
+  display: flex;
+}
+.modal-bottom1 {
+  width: 620rpx;
+}
+.sure-right {
+  height: 115rpx;
+  color: #FF6600;
+  font-size: 32rpx;
+  text-align: center;
+  box-sizing: border-box;
+  background:#fff;
+  padding:0;
+  width:310rpx;
+  line-height:115rpx;
+
+}
+.cancel-left {
+  width: 50%;
+  height: 115rpx;
+  border-right: 1px solid #E6E6E6;
+  color: #86939F;
+  font-size: 32rpx;
+  text-align: center;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}

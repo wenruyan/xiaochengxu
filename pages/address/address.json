@@ -1,0 +1,9 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "收货地址",
+  "usingComponents": {
+    "navbar": "../../components/navbar/navbar",
+    "tabbar": "../../components/tabbar/tabbar",
+    "login-receive": "../../components/login-receive/login-receive"
+  }
+}

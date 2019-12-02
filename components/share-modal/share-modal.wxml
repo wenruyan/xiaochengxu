@@ -1,0 +1,30 @@
+<view class='modal' wx:if="{{ modalShow }}">
+  <view class='modal-content tac' animation="{{ floatUp }}" catchtap>
+    <view class='box flex flex-pack-justify'>
+      <view class='view weixin flex flex-v flex-align-center'>
+        <image class="image" src="../../images/share_2_friend.png"></image>
+        <text class="text">分享给好友</text>
+        <button class="share" open-type="share"></button>
+      </view>
+      <view class='view pengyouquan flex flex-v flex-align-center'>
+        <image class="image" src="../../images/save_img.png"></image>
+        <text class="text">生成分享海报</text>
+        <button class="share" bindtap="showShareModal1"></button>
+      </view>
+    </view>
+    <view class='bottom' bindtap='hideModal'>
+      取消
+    </view>
+  </view>
+  <view class='{{showStatus ? "save-img1" : "save-img2"}} save-img tac'>
+    <image class="save-cancel" src="../../images/close_icon.png" bindtap='closeSave'></image>
+    <view class='title'>保存到相册</view>
+    <view class='save-content'>
+      <image class="share-pic" src="{{sharePicTmpPath}}" mode="aspectFit"></image>
+    </view>
+    <button class='save-btn' bindtap="checkPermission">保存图片</button>
+    <view class='save-text'>保存图片到手机相册后，将图片分享到你的圈子</view>
+    <canvas style="width: 750px; height: {{height}}" class='myCanvas' canvas-id="myCanvas"></canvas>
+  </view>
+  
+</view>

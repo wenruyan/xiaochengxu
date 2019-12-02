@@ -1,0 +1,58 @@
+<!--index.wxml-->
+<view class="container">
+  <navbar font-color="{{'#000000'}}" bg-op="{{1}}" can-back="{{false}}" title="奖品发货"></navbar>
+  <view class='menu'  style="height: calc(100vh - 88rpx - {{statusBarHeight}}px);padding-top: calc(88rpx + {{statusBarHeight}}px);">
+    <view class='img-list'>
+      <block wx:if="{{!hasUserInfo}}">
+        <view class="image gray f-l"></view>
+        <view class="image gray f-l"></view>
+        <view class="image gray f-l"></view>
+        <view class="image gray f-l"></view>
+      </block>
+      <block wx:else>
+        <image class='image {{index > 3 ? "other" : ""}}' src='{{item.awardPic}}' wx:for="{{listData}}" wx:key="{{index}}" wx:if="{{index < 6}}"></image>
+      </block>
+    </view>
+    <image class="shelf" src="../../images/shelf.png"></image>
+    <view class='content'>
+      <view class='menu-item input-wrap'>
+        <view class='input-wrap'>
+          <input value="{{inputNameValue}}" bindinput="bindNameInput" placeholder="收件人" type='text'/>
+        </view>
+      </view>
+      <view class='menu-item input-wrap'>
+        <view class='input-wrap'>
+          <input value="{{inputPhoneValue}}" bindinput="bindPhoneInput" placeholder="手机号" type='number' maxlength='11'/>
+        </view>
+      </view>
+      <view class='menu-item input-wrap'>
+        <view class='input-wrap'>
+          <picker class='picker' mode="region" bindchange="bindRegionChange" value="{{region}}"><text class="picker">{{region[0] ? region[0] + ' ' + region[1] + ' ' + region[2] : '选择省、市、区'}}</text></picker>
+        </view>
+        <image class='arrow-img' src='../../images/arrow_r_heavy.png'></image>
+      </view>
+      <view class='menu-item add-detail input-wrap'>
+        <view class='input-wrap'>
+          <input value="{{inputAddressValue}}" bindinput="bindAddressInput" placeholder="详细地址" type='text'/>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='btn-wrap flex flex-pack-justify'>
+    <form bindsubmit="getWxAddress" report-submit="{{ true }}">
+      <button class="btn  btn-delate" form-type="submit">从微信导入地址</button>
+    </form>
+    <form bindsubmit="submitInfo" report-submit="{{ true }}">
+      <button class="btn btn-save" form-type="submit">提交</button>
+    </form>
+  </view>
+  <login-receive bindconfirm="loginSuccess" bindclose="closeModal" show-modal="{{showModal}}"></login-receive>
+  <!-- <view class='modal' wx:if="{{showModal}}">
+    <view class='modal-content'>
+      <image class='gift-img' src='../../images/gift_box.png'></image>
+      <view class='text'>您有奖品可以领取，登录后就可以领取了哦！</view>
+      <button class='get-btn'>我要领取</button>
+    </view>
+    <image class='close-img' src='../../images/close_icon-1.png' bindtap='closeModal'></image>
+  </view> -->
+</view>

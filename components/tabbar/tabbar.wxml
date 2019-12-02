@@ -1,0 +1,26 @@
+<view class="tabbar_box {{isIphoneX?'iphoneX-height':''}}" style="background-color:{{tabbar.backgroundColor}}">
+  <block wx:for="{{tabbar.list}}" wx:key="{{item.pagePath}}">
+     <navigator wx:if="{{item.isSpecial}}"  version="trial" app-id="wx0b7e21fbe3b3c09a" target="miniProgram" class="tabbar_nav" hover-class="none"  bindsuccess="getsuccess"   open-type='navigate'  style="color:{{tabbar.color}}" >
+      <image class="tabbar_icon" src="{{item.selected ? item.selectedIconPath : item.iconPath}}"></image>
+      <text>{{item.text}}</text>
+    </navigator>
+    <!-- <view wx:if="{{item.isSpecial}}" class="tabbar_nav" hover-class="none" style="color:{{tabbar.color}}" bindtap="{{item.funcName}}"> 
+      <image class="tabbar_icon" src="{{item.selected ? item.selectedIconPath : item.iconPath}}"></image>
+      <text>{{item.text}}</text>
+    </view>-->
+    <navigator wx:else class="tabbar_nav" hover-class="none" url="{{item.pagePath}}" style="color:{{item.selected ? tabbar.selectedColor : tabbar.color}}" open-type="switchTab" >
+      <image class="tabbar_icon" src="{{item.selected ? item.selectedIconPath : item.iconPath}}"></image>
+      <text>{{item.text}}</text>
+    </navigator>
+  </block>
+  <view class='confirm-tips' wx:if="{{tipsConfirm}}" catchtouchmove="stopMove">
+    <view class='bg'></view>
+    <view class='content'>
+      <view class='text-title'>积分商城</view>
+      <view class='text-content'>别着急，程序猿小哥哥正在紧锣密鼓的开发中~  敬请期待！</view>
+    </view>
+    <view class='close'>
+      <image src='../../images/icon-close.png' bindtap='closeTipsConfirm'></image>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,185 @@
+<!-- 即将到账:1  已到账:2  已失效:3 -->
+<!-- 直充：30 代下单：50 -->
+<wxs module="priceFilter" src="../../wxs/wxs.wxs"></wxs>
+<view class='container'>
+  <navbar font-color="{{'#333333'}}" bg-op="{{1}}" canBack="{{false}}" title="我的卡包"></navbar>
+  <view class="main-content" style="padding-top: calc(88rpx + {{statusBarHeight}}px);">
+    <wux-refresher id="wux-refresher" bind:pulling="onPulling" bind:refresh="onRefresh" pullingText="" refreshingText="" distance="{{ 50 }}">
+      <scroll-view class='scroll' scroll-y bindscrolltolower="onLoadmore">
+        <view class='mainContent'>
+          <view class="topTab">
+            <view class="get {{currentTab ? 'activeTab':''}}" bindtap="myGet">
+              <text>我领的({{myGetTotal}})</text>
+            </view>
+            <view class="buy {{!currentTab ? 'activeTab':''}}" bindtap="myBuy">
+              <text>我买的({{myBuyTotal}})</text>
+            </view>
+          </view>
+          <view class="skuList" wx:if="{{currentTab}}">
+            <view class="none" wx:if="{{(myGet20.length + myGet30.length) == 0}}">这里空空如也，去买点吧</view>
+            <view wx:else>
+              <view class="contact">
+                <image src="../../images/service.png"></image>
+                联系客服
+                <button show-message-card="{{true}}" open-type="contact"></button>
+              </view>
+              <view class="skuStatus" wx:if="{{myGet20.length !== 0}}">
+                <view class="decorationLine"></view>
+                <view>已到账</view>
+              </view>
+              <i-swipeout i-class="i-swipeout-demo-item" actions="{{actions}}" wx:for="{{myGet20}}" wx:key="{{item.index}}" class="swipe-out" bindchange="showModal" data-item="{{item}}">
+                <view class="skuItemBox" slot="content">
+                  <view class="skuItem demo-item">
+                    <image src="{{item.url}}"></image>
+                    <view class="skuDesc">
+                      <view class="skuTitle">{{item.name}}</view>
+                      <view class="skuEndTime" wx:if="{{item.type != 11}}">
+                        到期时间: {{item.endTime}}
+                      </view>
+                      <view class="skuEndTime" wx:if="{{item.type != 40}}">
+                        领取时间: {{item.create_date}}
+                      </view>
+                    </view>
+                    <view class="itemStatus {{item.statusTxt == '快过期'? 'almost' : 'have'}}">
+                      {{item.statusTxt}}
+                    </view>
+                    <form bindsubmit="join">
+                      <button form-type="submit" data-id="{{item}}"></button>
+                    </form>
+                  </view>
+                </view>
+              </i-swipeout>
+              <view class="skuStatus" wx:if="{{myGet30.length !== 0}}">
+                <view class="decorationLine"></view>
+                <view>已失效</view>
+              </view>
+              <view class="skuItemBox" wx:for="{{myGet30}}" wx:key="{{item.index}}">
+                <view class="skuItem lose">
+                  <image src="{{item.url}}"></image>
+                  <view class="skuDesc">
+                    <view class="skuTitle fail">{{item.name}}</view>
+                    <view class="skuEndTime" wx:if="{{item.type != 11}}">
+                      到期时间: {{item.endTime}}
+                    </view>
+                    <view class="skuEndTime" wx:if="{{item.type != 40}}">
+                      领取时间: {{item.create_date}}
+                    </view>
+                  </view>
+                  <view class="itemStatus fail">{{item.statusTxt}}</view>
+                  <form bindsubmit="join">
+                    <button form-type="submit" data-id="{{item}}"></button>
+                  </form>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="skuList" wx:if="{{!currentTab}}">
+            <!-- <view class="none" wx:if="{{(myBuy10.length + myBuy20.length + myBuy30.length) == 0}}">
+              这里空空如也，去买点吧
+            </view> -->
+            <view class="none" wx:if="{{(myBuy10.length + myBuy20.length + myBuy30.length) == 0}}">
+              这里空空如也，去买点吧
+            </view>
+            <view wx:else>
+              <view class="contact">
+                <image src="../../images/service.png"></image>
+                联系客服
+                <button show-message-card="{{true}}" open-type="contact"></button>
+              </view>
+              <view class="skuStatus" wx:if="{{myBuy20.length !== 0}}">
+                <view class="decorationLine"></view>
+                <view>即将到账</view>
+              </view>
+              <!-- <wux-swipe-action-group class="group">
+                <wux-swipe-action autoClose bind:click="onClick" wx:for="{{myBuy20}}" wx:key="{{item.index}}" data-item="{{item}}"> -->
+                <view wx:for="{{myBuy20}}" wx:key="{{item.index}}" data-item="{{item}}">
+                  <view class="skuItemBox">
+                    <view class="skuItem will">
+                      <image src="{{item.url}}"></image>
+                      <view class="skuDesc">
+                        <view class="skuTitle">{{item.name}}</view>
+                        <view class="skuPrice">实付: ￥{{priceFilter.priceFormat(item.gprice)}}</view>
+                      </view>
+                      <view class="itemStatus">{{item.statusTxt}}</view>
+                      <form>
+                        <button form-type="submit" data-id="{{item}}"></button>
+                      </form>
+                    </view>
+                  </view>
+                </view>
+                <!-- </wux-swipe-action>
+              </wux-swipe-action-group> -->
+              <view class="skuStatus" wx:if="{{myBuy10.length !== 0}}">
+                <view class="decorationLine"></view>
+                <view>已到账</view>
+              </view>
+              <i-swipeout i-class="i-swipeout-demo-item" actions="{{actions}}" wx:for="{{myBuy10}}" wx:key="{{item.index}}" class="swipe-out" bindchange="showModal" data-item="{{item}}">
+                <!-- <wux-swipe-action-group>
+                  <wux-swipe-action autoClose right="{{ right }}" bind:click="onClick" bindtap="join" data-item="{{item}}"> -->
+                <view class="skuItemBox" slot="content">
+                  <view class="skuItem demo-item" data-id="{{item}}">
+                    <image src="{{item.url}}"></image>
+                    <view class="skuDesc">
+                      <view class="skuTitle">{{item.name}}</view>
+                      <view class="skuEndTime" wx:if="{{item.orderType == 50}}">
+                        到期时间: {{item.endTime}}
+                      </view>
+                      <view class="skuPrice">实付: ￥{{priceFilter.priceFormat(item.gprice)}}</view>
+                    </view>
+                    <view class="itemStatus {{item.statusTxt == '快过期' ? 'almost': 'have'}}">
+                      {{item.statusTxt}}
+                    </view>
+                    <form bindsubmit="join">
+                      <button form-type="submit" data-id="{{item}}"></button>
+                    </form>
+                  </view>
+                </view>
+                <!-- </wux-swipe-action>
+                </wux-swipe-action-group> -->
+              </i-swipeout>
+              <view class="skuStatus" wx:if="{{myBuy30.length !== 0}}">
+                <view class="decorationLine"></view>
+                <view>已失效</view>
+              </view>
+              <view class="" wx:for="{{myBuy30}}" wx:key="{{item.index}}" data-item="{{item}}">
+              <!-- <wux-swipe-action-group class="group">
+                <wux-swipe-action autoClose bind:click="onClick" wx:for="{{myBuy30}}" wx:key="{{item.index}}" data-item="{{item}}"> -->
+                  <view class="skuItemBox">
+                    <view class="skuItem lose">
+                      <image src="{{item.url}}"></image>
+                      <view class="skuDesc">
+                        <view class="skuTitle fail">{{item.name}}</view>
+                        <view class="skuEndTime">到期时间: {{item.endTime}}</view>
+                        <view class="skuPrice">实付: ￥{{priceFilter.priceFormat(item.gprice)}}</view>
+                      </view>
+                      <view class="itemStatus fail">{{item.statusTxt}}</view>
+                      <form bindsubmit="join">
+                        <button form-type="submit" data-id="{{item}}"></button>
+                      </form>
+                    </view>
+                  </view>
+                <!-- </wux-swipe-action>
+              </wux-swipe-action-group> -->
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </wux-refresher>
+  </view>
+  <tabbar tabbar="{{tabbar}}"></tabbar>
+  <view class="modal" wx:if="{{modalShow}}">
+    <view class="modal-content">
+      <view class="title">标记为已使用</view>
+      <view class="tip">福利被标记已使用之后无法恢复请谨慎操作</view>
+      <view class='modal-bottom'>
+        <text class="cancel" selectable="false" space="false" decode="false" bindtap="hideModal">
+          取消
+        </text>
+        <text class="confirm" selectable="false" space="false" decode="false" bindtap="onClick">
+          标记
+        </text>
+      </view>
+    </view>
+  </view>
+</view>

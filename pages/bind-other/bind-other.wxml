@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="container">
+  <navbar font-color="{{'#333333'}}" bg-op="{{1}}" title="乐业卡" bgColor="#F8F8F8"></navbar>
+  <view class="main-content" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px);padding-top: calc(88rpx + {{statusBarHeight}}px);">
+    <view class="wrap">
+      <view class='title'>欢迎绑定手机号</view>
+      <view class='text'>手机号</view>
+      <view class='input-wrap'>
+        <input value="{{inputPhoneValue}}" bindinput="bindPhoneInput" placeholder="请输入手机号码" type='number' maxlength='11'/>
+      </view>
+      <view class='text'>验证码</view>
+      <view class='input-wrap'>
+        <input value="{{inputCodeValue}}" bindinput="bindCodeInput" placeholder="请输入验证码" type='number' maxlength='4'/>
+        <view class="code">
+          <view class="get" hidden="{{time != 60}}" bindtap="getCode">获取验证码</view>
+          <view class="time" hidden="{{time == 60}}">{{time}}s</view>
+        </view>
+      </view>
+    </view>
+    <button wx:if="{{inputCodeValue=='' || inputPhoneValue==''}}" class="btn sure-btn sure-btn1">绑定</button>
+    <form bindsubmit="sure" report-submit="{{ true }}">
+      <button wx:if="{{inputCodeValue!='' && inputPhoneValue!=''}}" class="btn sure-btn" form-type="submit">绑定</button>
+    </form>
+  </view>
+</view>

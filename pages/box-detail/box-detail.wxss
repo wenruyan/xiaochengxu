@@ -1,0 +1,412 @@
+/**index.wxss**/
+
+page {
+  height: auto;
+  background-color: #F2F2F2;
+}
+
+.container {
+  background-color: #F2F2F2;
+  /* height: 100%; */
+  position: relative;
+}
+
+.date {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  background-color: #000000;
+  opacity: 0.45;
+}
+
+.bottom {
+  padding: 22rpx 36rpx 0;
+  background-color: #F2F2F2;
+}
+.bottom .btn {
+  width: 324rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+  border-radius: 14rpx;
+  color: #FFFFFF;
+}
+
+.bottom .btn.cancelBtn {
+  background-color: #D8D8D8;
+}
+
+.bottom .btn.sureBtn {
+  background: linear-gradient(180deg,rgba(250,217,97,1) 0%,rgba(254,181,35,1) 100%);
+}
+
+.confirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 11;
+  overflow: hidden;
+}
+
+.confirm .bg {
+  background-color: #000000;
+  opacity: 0.8;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.confirm .confirm-body {
+  width: 568rpx;
+  height: 378rpx;
+  margin: 478rpx auto 0;
+  background-color: #fff;
+  border-radius: 24rpx;
+  position: relative;
+  overflow: hidden;
+  padding: 0 44rpx;
+  box-sizing: border-box;
+}
+
+.confirm .confirm-body .content {
+  text-align: center;
+  margin-top: 106rpx;
+  font-size: 36rpx;
+}
+
+.confirm .confirm-body .btn-wrap {
+  margin-top: 104rpx;
+}
+
+.confirm .confirm-body .btn-wrap .btn {
+  width: 190rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  background-color: #EDEDED;
+  border-radius: 14rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #9B9B9B;
+}
+
+.confirm .confirm-body .btn-wrap .btn.sure {
+  color: #FFFFFF;
+  background-color: #FD7C26;
+}
+
+.main-content {
+  background-color: #F2F2F2;
+}
+
+.main-content .item {
+  width: 704rpx;
+  margin: 36rpx auto 0;
+  background-color: #fff;
+  border-radius: 16rpx;
+  position: relative;
+}
+
+.main-content .item .left-icon {
+  width: 38rpx;
+  height: 78rpx;
+  position: absolute;
+  left: -12rpx;
+  top: 22rpx;
+}
+
+.main-content .item .item-head {
+  height: 120rpx;
+  position: relative;
+}
+
+.main-content .item .item-head .package-name {
+  height: 120rpx;
+  line-height: 120rpx;
+  margin-left: 48rpx;
+  width: 200rpx;
+  font-size: 36rpx;
+  color: #000000;
+}
+
+.main-content .item .item-head .market-price {
+  height: 120rpx;
+  line-height: 120rpx;
+  margin-left: 18rpx;
+  font-size: 36rpx;
+  color: #E95567;
+  text-decoration: line-through;
+}
+
+.main-content .item .item-head .now-price {
+  margin-right: 18rpx;
+  font-size: 40rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+
+.main-content .item .item-head .choosed {
+  width: 40rpx;
+  height: 40rpx;
+  padding: 40rpx;
+  position: relative;
+}
+
+.main-content .item .item-head .choosed image {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 40rpx;
+  left: 40rpx;
+}
+
+.main-content .item .item-head .choosed view {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  border: 1px solid #ACACAC;
+  position: absolute;
+  top: 40rpx;
+  left: 40rpx;
+  box-sizing: border-box;
+}
+
+.main-content .item .item-body {
+  padding: 0 0 42rpx;
+  position: relative;
+}
+.main-content .item .item-body::before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: #979797;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.33;
+  transform: scaleY(0.5);
+}
+
+.main-content .item .item-body .qt-item {
+  width: 25%;
+  padding: 0 22rpx;
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.main-content .item .item-body .qt-item  .icon {
+  width: 98rpx;
+  height: 98rpx;
+  position: relative;
+  margin: 0 auto;
+  display: block;
+}
+
+.main-content .item .item-body .qt-item  .icon image {
+  width: 98rpx;
+  height: 98rpx;
+  transform: scale(1.1);
+}
+
+.main-content .item .item-body .qt-item .amount{
+  font-size: 36rpx;
+  color: #EA2062;
+  position: absolute;
+  top: 18rpx;
+  left: 30rpx;
+  font-family: 'DIN Pro Cond';
+  width: 54rpx;
+}
+
+.main-content .item .item-body .qt-item .amount .small{
+  font-size: 22rpx;
+}
+
+.main-content .item .item-body .qt-item .number {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 56rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  font-size: 32rpx;
+  background-color: #E94949;
+  border-radius: 50%;
+  color: #ffffff;
+  transform: scale(0.5);
+  transform-origin: top right;
+}
+
+.main-content .item .item-body .qt-item  .qt-name {
+  width: 100%;
+  font-size: 24rpx;
+  color: #4A4A4A;
+  margin-top: 18rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+}
+
+.confirm .qy-content {
+  width: 516rpx;
+  margin: 0 auto;
+  height: 570rpx;
+  background-color: #fff;
+  border: 14rpx solid #FFC24E;
+  border-radius: 30rpx;
+  position: relative;
+  transform: scale(0.95);
+  transform-origin: top;
+  opacity: 0.8;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.confirm .qy-content.active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.confirm .qy-content .qy-pic {
+  width: 474rpx;
+  height: 198rpx;
+  margin: 20rpx auto 0;
+  display: block;
+  border-radius: 14rpx;
+  background-color: #D8D8D8;
+}
+
+.confirm .qy-content .qy-head {
+  width: 302rpx;
+  height: 78rpx;
+  position: absolute;
+  left: 50%;
+  margin-left: -151rpx;
+  top: -46rpx;
+}
+
+.confirm .qy-content .qy-head image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.confirm .qy-content .qy-head view {
+  width: 100%;
+  height: 78rpx;
+  line-height: 78rpx;
+  font-size: 48rpx;
+  color: #ffffff;
+  text-align: center;
+  position: absolute;
+  font-weight: 500;
+}
+
+.confirm .qy-content .price-wrap {
+  position: absolute;
+  top: 40rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.confirm .qy-content .price-wrap .unit {
+  font-size: 48rpx;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.confirm .qy-content .price-wrap .int {
+  font-size: 128rpx;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'DIN Pro Cond';
+}
+
+.confirm .qy-content .price-wrap .small {
+  font-size: 60rpx;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'DIN Pro Cond';
+}
+
+.confirm .qy-content .qy-detail {
+  width: 100%;
+  height: 330rpx;
+  margin-top: 22rpx;
+}
+
+.confirm .qy-content .qy-detail view {
+  width: 464rpx;
+  margin: 0 auto;
+}
+
+.confirm .qy-content .qy-detail .title {
+  padding-left: 4rpx;
+  box-sizing: border-box;
+  font-size:  32rpx;
+  font-weight: 500;
+  color: #4A4A4A;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.confirm .qy-content .qy-detail .subTitle, .confirm .qy-content .qy-detail .valid-date {
+  box-sizing: border-box;
+  font-size:  26rpx;
+  font-weight: 500;
+  color: #9B9B9B;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 10rpx;
+}
+
+.confirm .qy-content .qy-detail .rule {
+  box-sizing: border-box;
+  font-size:  30rpx;
+  font-weight: 500;
+  color: #4A4A4A;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 20rpx;
+}
+
+.confirm .qy-content .qy-detail .desc {
+  box-sizing: border-box;
+  font-size:  26rpx;
+  font-weight: 500;
+  color: #9B9B9B;
+  margin-top: 10rpx;
+}
+
+.confirm .qy-content .qy-detail .desc.mtop {
+  margin-top: 50rpx;
+}
+
+.confirm .icon-close {
+  position: relative;
+  display: block;
+  margin: 82rpx auto 0;
+  text-align: center;
+}
+
+.detail-swiper {
+  margin-top: 300rpx;
+  height: 640rpx;
+}
+
+.detail-swiper swiper-item {
+  padding-top: 42rpx;
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "我的订单",
+  "disableScroll": true,
+  "usingComponents": {
+    "navbar": "../../components/navbar/navbar"
+  }
+}

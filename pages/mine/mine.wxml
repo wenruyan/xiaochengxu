@@ -1,0 +1,52 @@
+<view class="container">
+  <navbar font-color="{{'#fff'}}" bg-op="{{0}}" canBack="{{false}}" title="我的"></navbar>
+    <view class='top-image'>
+      <image class='bg-image' src='../../images/top-image-1.png'></image>
+      <view class='mine-info' wx:if="{{step!=10}}">
+        <image class='mine-img' src='{{userUrl}}'></image>
+        <!-- <image class='mine-img' wx:if="{{step==40}}" src='{{companyLogo}}'></image> -->
+        <view class='info'>
+          <view class='name'>{{nickName}}</view>
+          <form bindsubmit="bindPhone" report-submit="{{ true }}">
+            <button wx:if="{{step == 20}}" class="bind-phone" form-type="submit">绑定手机</button>
+          </form>
+          <view wx:if="{{step == 30 || step == 40}}" class='phone'>{{phone}}</view>
+        </view>
+      </view>
+      <view class='mine-info1' wx:if="{{step==10}}">
+      <view class='login-text'>Hi, 终于等到你!</view>
+      <form bindsubmit="login" report-submit="{{ true }}">
+        <button class="login-btn" form-type="submit">登录</button>
+      </form>
+      </view>
+    </view>
+    <view class='next-box'>
+      <view class='next' wx:for="{{list}}" wx:key="{{index}}" wx:if="{{item.show==true}}">
+      <view class='icon-img'>
+        <image class='next-icon {{index == 0?"next-icon1":index == 1?"next-icon2":""}}' src='{{item.image}}'></image>
+      </view> 
+        <view class='text' data-index='{{index}}' bindtap='goPage'>
+          <view class='title'>{{item.title}}</view>
+          <image class='arrow-img' src='../../images/arrow-black.png'></image>
+          <button wx:if="{{index == 3 && step != 10}}" class='concat-text' show-message-card="{{true}}" open-type="contact">联系客服</button>
+        </view>
+      </view>
+    </view>
+  <tabbar tabbar="{{tabbar}}"></tabbar>
+  <!-- 提示登录弹框 -->
+  <view class="codeModal" wx:if="{{loginModal}}">
+      <view class="modalContent1">
+          <view class="confirmTitle1">了解更多</view>
+          <view class="confirmSlogan1">为了能提供更好的服务我们想了解你更多</view>
+          <!-- <form bindsubmit="login" report-submit="{{ true }}">
+            <button class="confirmBtn2" form-type="submit">登录</button>
+          </form> -->
+          <view class='modal-bottom modal-bottom1'>
+            <view class='cancel-left' bindtap="closeLoginModal">取消</view>
+            <form report-submit="{{ true }}">
+              <button class='sure-right' open-type="getUserInfo" bindgetuserinfo="getUserInfoSuccess">好呀</button>
+            </form>
+          </view>
+      </view>
+  </view>
+</view>

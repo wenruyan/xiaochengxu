@@ -1,0 +1,270 @@
+page {
+  height: auto;
+}
+
+.container {
+  background-color: #fff;
+}
+
+.main-content {
+  text-align: center;
+}
+.select-bar {
+  width: 100%;
+  padding: 30rpx 0;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.select-bar .item {
+  text-align: center;
+  width: 33.33%;
+  float: left;
+  font-size: 28rpx;
+  color: #606972;
+  font-weight: bold;
+  position: relative;
+}
+.select-bar .item.active {
+  color: #1D2023;
+}
+.select-bar .item .line {
+  width: 0;
+  height: 4rpx;
+  background-color: #FF6600;
+  margin: 0 auto;
+  margin-top: 26rpx;
+  transition: width 0.2s;
+}
+.select-bar .item.active .line {
+  width: 100rpx;
+}
+.scroll {
+  height: 100%;
+  width: 100%;
+  background-color: #F2F2F2;
+}
+.list {
+  height: 100%;
+  width: 100%;
+  background-color: #F2F2F2;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.list-detail {
+  /* width: 690rpx; */
+  height: 184rpx;
+  padding: 20rpx;
+  background-color: #fff;
+  margin-bottom: 16rpx;
+  box-shadow:0px 4px 6px rgba(206,141,94,0.02);
+  box-sizing: border-box;
+  border-radius: 20rpx;
+  position: relative;
+}
+.list-detail .btn {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;  
+}
+
+.list-detail1 {
+  margin-bottom: 0rpx;
+  border-radius: 0;
+  border-top-left-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
+}
+.time-box {
+ position: absolute;
+  width: 40rpx;
+  height: 36rpx;
+  top: 10rpx;
+  right: 10rpx; 
+}
+.time-image {
+  width: 40rpx;
+  height: 36rpx;
+}
+.box {
+  display: flex
+}
+.list-box {
+  width: 140rpx;
+  height: 140rpx;
+  position: relative;
+}
+.price {
+  position: absolute;
+  left: 10rpx;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #EA2062;
+  font-size: 48rpx;
+  padding-top: 38rpx;
+  box-sizing: border-box;
+  font-family: 'DIN Pro Cond';
+}
+.price-1 {
+  font-size: 22rpx;
+}
+.list-image {
+  width: 140rpx;
+  height: 140rpx;
+}
+.list-image1{
+  height: 160rpx;
+}
+.next-box {
+  /* width: 368rpx; */
+  margin-left: 20rpx;
+  text-align: left;
+  height: 160rpx;
+}
+.title {
+  color: #3F454B;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-top: 24rpx;
+}
+.dis-time {
+  margin-top: 14rpx;
+}
+.subtitle {
+  color: #86939F;
+  font-size: 24rpx;
+}
+.time {
+  font-size: 24rpx;
+  color: #86939F;
+  margin-top: 14rpx;
+}
+.pass-image {
+  position: absolute;
+  width: 108rpx;
+  height: 111rpx;
+  bottom: 0;
+  right: 0;
+}
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999999;
+}
+
+.modal-content {
+    height: 388rpx;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 620rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+}
+
+.modal-content .title {
+    color: #1D2023;
+    font-size: 40rpx;
+    /* margin: 0 auto; */
+    text-align: center;
+    margin: 72rpx 0 22rpx 0;
+}
+
+.modal-content .tip {
+    color: #606972;
+    font-size: 30rpx;
+    margin: 0 auto;
+    text-align: center;
+    width: 432rpx;
+}
+
+.modal .modal-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 0;
+    display: flex;
+}
+
+.modal .modal-bottom .text {
+    display: inline-block;
+    width: 50%;
+    height: 116rpx;
+    line-height: 116rpx;
+    text-align: center;
+    font-size: 32rpx;
+    border-top: 1px solid #e6e6e6;
+    box-sizing: border-box;
+}
+
+.modal .modal-bottom .cancel {
+    color: #86939f;
+    height: 116rpx;
+}
+
+.modal .modal-bottom .confirm {
+    color: #ff6600;
+    border-left: 1px solid #e6e6e6;
+    height: 116rpx;
+}
+.no-record {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 206rpx;
+  box-sizing: border-box;
+  color: #707070;
+  font-size: 28rpx;
+  background-color: #F2F2F2; 
+}
+.mony-1 {
+  font-size: 36rpx;
+}
+.mony-2 {
+  font-size: 16rpx;
+  transform: scale(0.5)
+}
+.text-1 {
+  font-size: 48rpx;
+}
+.text-2 {
+  font-size: 24rpx;
+}
+
+.loading .item {
+  width: 670rpx;
+  margin: 20rpx auto 0;
+  padding: 20rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.loading .item .pic {
+  height: 140rpx;
+  width: 140rpx;
+  background-color: #f2f2f2;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+
+.loading .item .line {
+  height: 50rpx;
+  width: 350rpx;
+  background-color: #f2f2f2;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  border-radius: 5rpx;
+}
+
+.loading .item .line:last-child {
+  width: 450rpx;
+}

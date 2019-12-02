@@ -1,0 +1,42 @@
+<!--index.wxml-->
+<view class="container">
+  <navbar font-color="{{'#333333'}}" bg-op="{{1}}" canBack="{{false}}" title="乐业卡" bgColor="#F8F8F8"></navbar>
+  <view class="main-content" style="padding-top: calc(88rpx + {{statusBarHeight}}px);">
+    <wux-refresher id="wux-refresher" bind:pulling="onPulling" bind:refresh="onRefresh" pullingText="" refreshingText="" distance="{{ 50 }}">
+      <view class="content">
+        <view class='step-two'>
+          <view class='top'>
+            <image class='choose-image' src='../../images/choose-image.png'></image>
+          </view>
+          <view class='choose-content'>
+            <view class='card' wx:for="{{listData1}}" wx:key="{{index}}">
+              <view class='image-box'>
+                 <image class='card-image' src="{{item.url}}"></image>
+              </view>
+              <view class='text'>
+                <view class='title'>{{item.title}}</view>
+                <view class='text-content'>{{item.describe}}</view>
+              </view>
+              <view class='check-box'>
+                <view class="{{item.checked == false?'circle':'circle-true'}}" data-id="{{item.id}}" data-index="{{index}}" bindtap='changeCheck'>
+                <view wx:if="{{item.checked == true}}" class='right'>
+                    <i-icon size="18" color="#fff" type="right" />
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='btn-box'>
+            <form bindsubmit="join" report-submit="{{ true }}">
+              <button wx:if='{{showNext}}' class='next-step' form-type="submit" bindtap='nextTep'>下一页</button>
+              <button loading='{{showLoading}}' wx:if='{{showFinish}}' class='next-step' form-type="submit" bindtap='select'>选择完毕</button>
+            </form>
+          </view>
+        </view>
+      </view>
+    </wux-refresher>
+  </view>
+  <!-- <i-modal style title="提示" visible="{{ true }}" actions="{{ actions }}" bind:click="modalClick">
+    <view style='padding: 0 90rpx;color:#333'>卡券已成功转入您的卡包内 是否跳转去我的卡包</view>
+  </i-modal> -->
+</view>

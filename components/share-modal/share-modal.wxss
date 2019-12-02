@@ -1,0 +1,160 @@
+/* 模态框 */
+
+.modal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.modal-content {
+  width: 100%;
+  height: 340rpx;
+  background-color: #fff;
+  border-top-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
+  bottom: 0;
+  /* padding: 68rpx 116rpx 0 116rpx; */
+  box-sizing: border-box;
+}
+
+.modal-content .view {
+  height: 186rpx;
+  position: relative;
+}
+.box {
+  padding: 48rpx 116rpx 0 116rpx;
+  border-bottom: 1px solid #eee;
+}
+.bottom {
+  height: 102rpx;
+  line-height: 102rpx;
+  text-align: center;
+  color: #333333;
+  font-size: 28rpx;
+}
+.modal-content .image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.modal-content .text {
+  color: #333;
+  font-size: 28rpx;
+  margin-top: 28rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+}
+
+.share {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  position: absolute;
+}
+
+.share:after {
+  display: none;
+}
+
+/* 水平居中 */
+.tac {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.flex-pack-justify {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.flex-v {
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+.flex-align-center {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.save-img {
+  height: 970rpx;
+  width: 100%;
+  background-color: #fff;
+  position: absolute;
+  bottom: -970rpx;
+  /* left: 50%; */
+  transition: all 0.5s;
+  border-radius:20rpx 20rpx 0px 0px;
+  visibility: hidden;
+  padding: 44rpx 30rpx;
+  box-sizing: border-box;
+}
+.save-img1 {
+  bottom: 0;
+  transition: all 0.5s;
+  visibility: visible;
+}
+.save-img2 {
+  bottom: -970rpx;
+  visibility: hidden;
+}
+.save-cancel {
+  position: absolute;
+  right: 44rpx;
+  top: 44rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+.title {
+  color: #333;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 48rpx;
+}
+.save-content {
+  width: 350rpx;
+  height: 570rpx;
+  padding-left: 170rpx;
+  padding-right: 108rpx;
+  margin-bottom: 62rpx;
+}
+.share-pic {
+  width: 350rpx;
+  height: 570rpx;
+}
+.save-btn {
+  width: 100%;
+  background: #FF6600;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 24rpx;
+  border-radius: 60rpx;
+}
+.save-text {
+  font-size: 24rpx;
+  text-align: center;
+}
+
+canvas {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  z-index: -10;
+}

@@ -1,0 +1,12 @@
+<view class="container">
+  <navbar font-color="{{'#000000'}}" bg-op="{{0}}" can-back="{{false}}" title="{{sendSuccess == true?'发货成功':'活动已结束'}}"></navbar>
+  <view class='content'  style="height: calc(100vh - 88rpx - {{statusBarHeight}}px);padding-top: calc(88rpx + {{statusBarHeight}}px);">
+  <view>
+    <view class="tips">关闭小程序回到奖品列表<view class="j"></view></view>
+    <image class='image' wx:if="{{sendSuccess}}" src='../../images/success.png'></image>
+    <image class='image image-de' wx:if="{{sendDefault}}" src='../../images/default_fail.png'></image>
+    <view class='text' wx:if="{{sendSuccess}}">发货成功</view>
+    <view class='text' wx:if="{{sendDefault}}">活动已结束</view>
+  </view>
+  </view>
+</view>

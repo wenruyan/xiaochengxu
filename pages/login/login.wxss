@@ -1,0 +1,35 @@
+/**index.wxss**/
+
+page {
+  height: auto;
+}
+
+.container {
+  background-color: #fff;
+}
+
+.main-content {
+  text-align: center;
+}
+
+.logo {
+  width: 152rpx;
+  height: 152rpx;
+  padding-top: 180rpx;
+  padding-bottom: 200rpx;
+}
+
+.main {
+  font-size: 32rpx;
+  text-align: left;
+  border-top: 1rpx solid #CCC;
+  padding-top: 80rpx;
+}
+
+.tips {
+  color: #999999;
+  text-align: left;
+  font-size: 28rpx;
+  margin-top: 80rpx;
+  margin-bottom: 100rpx;
+}

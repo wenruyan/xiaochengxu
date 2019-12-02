@@ -1,0 +1,72 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/erweima/erweima",
+    "pages/directPayDesc/directPayDesc",
+    "pages/my-card/my-card",
+    "pages/login/login",
+    "pages/bind-index/bind-index",
+    "pages/bind-other/bind-other",
+    "pages/interest/interest",
+    "pages/get-details/get-details",
+    "pages/apply-company/apply-company",
+    "pages/complete-info/complete-info",
+    "pages/join-company/join-company",
+    "pages/voucher-center/voucher-center",
+    "pages/user-agreement/user-agreement",
+    "pages/weixin-card/weixin-card",
+    "pages/share/share",
+    "pages/box-list/box-list",
+    "pages/box-detail/box-detail",
+    "pages/mine/mine",
+    "pages/my-order/my-order",
+    "pages/my-welfare/my-welfare",
+    "pages/code-detail/code-detail",
+    "pages/link-detail/link-detail",
+    "pages/discount/discount",
+    "pages/address/address",
+    "pages/send-success/send-success"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "borderStyle": "black",
+    "color": "#CCCCCC",
+    "selectedColor": "#000000",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "福袋",
+        "iconPath": "./images/tabbar/index.png",
+        "selectedIconPath": "./images/tabbar/index-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "./images/tabbar/mine.png",
+        "selectedIconPath": "./images/tabbar/mine-active.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 30000,
+    "downloadFile": 30000
+  },
+  "usingComponents": {
+    "navbar": "./components/navbar/navbar",
+    "i-modal": "./libs/iview/modal/index",
+    "i-icon": "./libs/iview/icon/index",
+    "wux-refresher": "./libs/wux/refresher/index"
+  },
+  "debug": true,
+  "navigateToMiniProgramAppIdList": [
+    "wxeb490c6f9b154ef9"
+  ],
+  "sitemapLocation": "sitemap.json"
+}

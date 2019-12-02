@@ -1,0 +1,181 @@
+<!--index.wxml-->
+<wxs src="../../wxs/wxs.wxs" module="tools" />
+<view class="container">
+  <navbar font-color="{{'#333333'}}" bg-op="{{1}}" can-back="{{pageTitle=='我的福利'}}" title="{{pageTitle}}" bgColor="#fff"></navbar>
+  <view class="main-content" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px);padding-top: calc(88rpx + {{statusBarHeight}}px);">
+    <view class='select-bar'>
+      <view class='item {{activeSelect == 1 ? "active" : ""}}' data-type="1" data-tab="0" bindtap='changeSelect'>
+        未过期
+        <view class='line'></view>
+      </view>
+      <view class='item  {{activeSelect == 2 ? "active" : ""}}' data-type="2" data-tab="20" bindtap='changeSelect1'>
+        已使用
+        <view class='line'></view>
+      </view>
+      <view class='item  {{activeSelect == 3 ? "active" : ""}}' data-type="4" data-tab="50" bindtap='changeSelect2'>
+        已过期
+        <view class='line'></view>
+      </view>
+    </view>
+    <view wx:if="{{activeSelect==1}}" class="scroll-wrap" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px - 100rpx)">
+      <scroll-view class='scroll' scroll-y bindscrolltolower="getOrderList">
+        <view class="loading" wx:if="{{showModal}}">
+          <view class="item" wx:for="{{9}}">
+            <view class="f-l pic"></view>
+            <view class="line f-l"></view>
+            <view class="line f-l"></view>
+          </view>
+        </view>
+        <view class='no-record' wx:elif="{{listData1.length == 0}}">
+          <view wx:if="{{!noData}}">
+            <view class='no-record-text'>正在加载</view>
+          </view>
+          <view wx:else>
+            <view class='no-record-text'>暂无已领的福利</view>
+          </view>
+        </view>
+        <view class='list' wx:else>
+          <view class='list-detail noneMessage' wx:if="{{listData1.length==0}}">
+            <view class='no-record-text'>暂无记录</view>
+          </view>
+          <i-swipeout i-class="i-swipeout-demo-item" actions="{{actions}}" wx:for="{{listData1}}" wx:key="{{item.index}}" class="swipe-out" bindchange="showModal" data-index="{{index}}" data-item="{{item}}" unclosable="{{true}}" toggle="{{toggle}}">
+          <view class='list-detail list-detail1' slot="content" data-item="{{item}}" bindtap='goPage'>
+            <form bindsubmit="goPage" report-submit="{{ true }}">
+              <button class="btn btn-save" data-item="{{item}}" form-type="submit"></button>
+            </form>
+            <view class='box' wx:if="{{item.discountscope != 10 && item.discountscope != 20 && item.discountscope != 30 }}">
+              <view class='list-box'>
+                <image class='list-image' src='{{item.url}}'></image>
+              </view>
+              <view class='next-box'>
+                <view class='title'>{{item.name}}</view>
+                <view class='time'>到期时间: {{item.cpEndTime}}</view>
+              </view>
+            </view>
+            <view class='box' wx:else>
+              <view class='list-box'>
+              <image class="list-image list-image1" src="{{item.discountscope == 10 ? '../../images/coupon-for-all.png' : '../../images/coupon-for-select.png'}}"></image>
+              <view class="price">{{tools.getPricePart(item.deductionnum, 1)}}<text class="price-1" wx:if="{{item.deductionnum < 10000}}">.{{tools.getPricePart(item.deductionnum, 2)}}</text></view>
+              </view>
+              <view class='next-box'>
+                <view class='title'>{{item.name}}</view>
+                <view class='dis-time subtitle'>{{item.content}}</view>
+                <!-- <view class='subtitle'>有效期:{{item.create_date}}至{{item.endtime}}</view> -->
+                <view class='subtitle' wx:if="{{item.validitytype == 10}}">有效期：{{item.starttime}} - {{item.endtime}}</view>
+                <view class='subtitle' wx:if="{{item.validitytype == 20}}">有效期：{{item.cpEndTime}}</view>
+              </view>
+            </view>
+            <view class='time-box'  wx:if="{{item.status == 10}}">
+              <image class='time-image' src='../../images/almost-time.png'></image>
+            </view>
+          </view>
+          </i-swipeout>
+        </view>
+        <view class='loading-data' wx:if="{{listData1.page1 < listData1.totalPage1}}">正在加载中……</view>
+      </scroll-view>
+    </view>
+    <view wx:if="{{activeSelect==2}}" class="scroll-wrap" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px - 100rpx)">
+      <scroll-view class='scroll' scroll-y bindscrolltolower="getOrderList1">
+        <view class='no-record' wx:if="{{listData2.length == 0}}">
+          <view wx:if="{{!noData}}">
+            <view class='no-record-text'>正在加载</view>
+          </view>
+          <view wx:else>
+            <view class='no-record-text'>暂无已领的福利</view>
+          </view>
+        </view>
+        <view class='list' wx:else>
+          <view class='list-detail noneMessage' wx:if="{{listData12.length==0}}">
+            <view class='no-record-text'>暂无已领的福利</view>
+          </view>
+          <view class='list-detail' wx:for="{{listData2}}" data-item="{{item}}" bindtap='goPage'>
+            <form bindsubmit="goPage" report-submit="{{ true }}">
+              <button class="btn btn-save" data-item="{{item}}" form-type="submit"></button>
+            </form>
+            <view class='box' wx:if="{{item.discountscope != 10 && item.discountscope != 20 && item.discountscope != 30 }}">
+              <view class='list-box'>
+                <image class='list-image' src='{{item.url}}'></image>
+              </view>
+              <view class='next-box'>
+                <view class='title'>{{item.name}}</view>
+                <view class='time'>到期时间: {{item.cpEndTime}}</view>
+              </view>
+            </view>
+            <view class='box' wx:else>
+              <view class='list-box'>
+                <image class="list-image list-image1" src="{{item.discountscope == 10 ? '../../images/coupon-for-all.png' : '../../images/coupon-for-select.png'}}"></image>
+              <view class="price">{{tools.getPricePart(item.deductionnum, 1)}}<text class="price-1" wx:if="{{item.deductionnum < 10000}}">.{{tools.getPricePart(item.deductionnum, 2)}}</text></view>
+              </view>
+              <view class='next-box'>
+                <view class='title'>{{item.name}}</view>
+                <view class='dis-time subtitle'>{{item.content}}</view>
+                <!-- <view class='subtitle'>有效期:{{item.create_date}}至{{item.endtime}}</view> -->
+                <view class='subtitle' wx:if="{{item.validitytype == 10}}">有效期：{{item.starttime}} - {{item.endtime}}</view>
+                <view class='subtitle' wx:if="{{item.validitytype == 20}}">有效期：{{item.cpEndTime}}</view>
+              </view>
+            </view>
+            <image class='pass-image' src='../../images/used-already.png'></image>
+          </view>
+        </view>
+        <view class='loading-data' wx:if="{{listData2.page2 < listData2.totalPage2}}">正在加载中……</view>
+      </scroll-view>
+    </view>
+    <view wx:if="{{activeSelect==3}}" class="scroll-wrap" style="height: calc(100vh - 88rpx - {{statusBarHeight}}px - 100rpx)">
+      <scroll-view class='scroll' scroll-y bindscrolltolower="getOrderList2">
+        <view class='no-record' wx:if="{{listData3.length == 0}}">
+          <view wx:if="{{!noData}}">
+            <view class='no-record-text'>正在加载</view>
+          </view>
+          <view wx:else>
+            <view class='no-record-text'>暂无已领的福利</view>
+          </view>
+        </view>
+        <view class='list' wx:else>
+          <view class='list-detail noneMessage' wx:if="{{listData13.length==0}}">
+            <view class='no-record-text'>暂无已领的福利</view>
+          </view>
+          <view class='list-detail' wx:for="{{listData3}}">
+            <form bindsubmit="goPage" report-submit="{{ true }}">
+              <button class="btn btn-save" data-item="{{item}}" form-type="submit"></button>
+            </form>
+            <view class='box' wx:if="{{item.discountscope != 10 && item.discountscope != 20 && item.discountscope != 30 }}">
+              <view class='list-box'>
+                <image class='list-image' src='{{item.url}}'></image>
+              </view>
+              <view class='next-box'>
+                <view class='title'>{{item.name}}</view>
+                <view class='time'>到期时间: {{item.cpEndTime}}</view>
+              </view>
+            </view>
+            <view class='box' wx:else>
+              <view class='list-box'>
+                <image class="list-image list-image1" src="{{item.discountscope == 10 ? '../../images/coupon-for-all.png' : '../../images/coupon-for-select.png'}}"></image>
+              <view class="price">{{tools.getPricePart(item.deductionnum, 1)}}<text class="price-1" wx:if="{{item.deductionnum < 10000}}">.{{tools.getPricePart(item.deductionnum, 2)}}</text></view>
+              </view>
+              <view class='next-box'>
+                <view class='title'>{{item.name}}</view>
+                <view class='dis-time subtitle'>{{item.content}}</view>
+                <!-- <view class='subtitle'>有效期:{{item.create_date}}至{{item.endtime}}</view> -->
+                <view class='subtitle' wx:if="{{item.validitytype == 10}}">有效期：{{item.starttime}} - {{item.endtime}}</view>
+                <view class='subtitle' wx:if="{{item.validitytype == 20}}">有效期：{{item.cpEndTime}}</view>
+              </view>
+            </view>
+            <image class='pass-image' src='../../images/expired-pass.png'></image>
+          </view>
+        </view>
+        <view class='loading-data' wx:if="{{listData3.page < listData3.totalPage}}">正在加载中……</view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="modal" wx:if="{{modalShow}}">
+    <view class="modal-content">
+      <view class="title">标记为已使用</view>
+      <view class="tip">福利被标记已使用之后无法恢复请谨慎操作</view>
+      <view class='modal-bottom'>
+        <view class="cancel text" selectable="false" space="false" decode="false" bindtap  ="hideModal">取消</view>
+        <view class="confirm text" selectable="false" space="false" decode="false" bindtap="onClick"> 标记</view>
+      </view>
+    </view>
+  </view>
+  <login-receive bindconfirm="loginSuccess" bindclose="closeModal" show-modal="{{showModal}}"></login-receive>
+</view>

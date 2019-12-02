@@ -1,0 +1,40 @@
+<view class="container">
+  <navbar font-color="{{'#333333'}}" bg-op="{{1}}" canBack="{{true}}" title="充值中心" bgColor="#F8F8F8"></navbar>
+  <view class="main-content" style="padding-top: calc(88rpx + {{statusBarHeight}}px);">
+      <scroll-view class='scroll' scroll-y bindscrolltolower="getListData">
+        <wux-refresher id="wux-refresher" bind:pulling="onPulling" bind:refresh="onRefresh" pullingText="" refreshingText="" distance="{{ 50 }}">
+          <view class='scroll-wrap'>
+            <view class='no-record' wx:if="{{listData.length == 0}}">
+              <view wx:if="{{!noData}}">
+                <!-- <image class='no-record-rush' src='../../images/index-egg.gif'></image> -->
+                <view class='no-record-text'>正在加载</view>
+              </view>
+              <view class='no-no-record' wx:else>
+                <!-- <image class='no-record-img' src='../../images/no-money-record.png'></image> -->
+                <view class='no-record-text'>暂无记录</view>
+              </view>
+            </view>
+            <view class='list' wx:else>
+              <view class='list-detail noneMessage' wx:if="{{listData.length==0}}">
+                <!-- <image class='no-record-img' src='../../images/no-money-record.png'></image> -->
+                <view class='no-record-text'>暂无记录</view>
+              </view>
+              <view class='list-content'wx:for="{{listData}}" wx:key="{{index}}">
+                <image class='image' src='{{item.picture}}'></image>
+                <view class='text-box'>
+                  <view class='title1'>{{item.title}}</view>
+                  <view class='title2'>{{item.subtitle}}</view>
+                </view>
+                <view class='btn'>
+                  <form bindsubmit="recharge" report-submit="{{ true }}">
+                    <button class="recharge" form-type="submit">去充值</button>
+                  </form>
+                </view>
+              </view>
+            </view>
+            <!-- <view class='loading-data' wx:if="{{page < totalPage}}">正在加载中……</view> -->
+          </view>
+        </wux-refresher>
+      </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,26 @@
+<wxs module="wxs">
+var getTime = function(date) { 
+  return date.split(':')
+}
+module.exports.getTime = getTime;
+</wxs>
+<view class="countdown-class">
+  <view class="countdown-wrap">
+    <view class="time" style='background-color:{{ bgColor }}'>
+      {{wxs.getTime(time)[0]}}
+    </view>
+    <view class="h" style='color:{{ bgColor }}'>
+      :
+    </view>
+    <view class="time" style='background-color:{{ bgColor }}'>
+      {{wxs.getTime(time)[1]}}
+    </view>
+    <view class="h" style='color:{{ bgColor }}'>
+      :
+    </view>
+    <view class="time" style='background-color:{{ bgColor }}'>
+      {{wxs.getTime(time)[2]}}
+    </view>
+  </view>
+</view>
+

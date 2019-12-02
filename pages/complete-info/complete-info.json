@@ -1,0 +1,11 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "完善信息",
+  "navigationBarBackgroundColor": "#fff",
+  "backgroundColor": "#fff",
+  "enablePullDownRefresh": false,
+  "disableScroll": false,
+  "usingComponents": {
+    "count-down": "../../components/count-down/index"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "微信登录",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "backgroundColor": "#F2F2F2",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": false,
+  "disableScroll": false,
+  "usingComponents": {
+    "i-icon": "../../libs/iview/icon/index"
+  }
+}
